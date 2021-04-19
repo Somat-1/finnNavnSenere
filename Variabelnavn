@@ -4,14 +4,14 @@ Karakterer:
   
  Ressurser:
   Liv:
-    var hp
+    var playerLP
     
   Mana:
-    var mp
+    var playerStamina
   
   Kort:
-    card+navn
-    "var cardNuke"
+    card+kortnummer
+    "var card005"
     
     var cardCost
     
