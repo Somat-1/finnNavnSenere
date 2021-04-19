@@ -1,0 +1,21 @@
+Karakterer:
+  char+karakternavn
+  "var charKim"
+  
+ Ressurser:
+  Liv:
+    var hp
+    
+  Mana:
+    var mp
+  
+  Kort:
+    card+navn
+    "var cardNuke"
+    
+    var cardCost
+    
+    
+    
+  
+  
