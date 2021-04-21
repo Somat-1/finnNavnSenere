@@ -10,13 +10,16 @@
     <style>
         /* body wrapper */
         body{
+            background-image: url(./gameBg.png);
+            background-repeat: no-repeat;
+            background-size: auto;
             height: 100vh;
             width: 100vw;
             position: fixed;
         }
         /* header stilen */
         header{
-            background-color: blanchedalmond;
+            background-color: transparent;
             padding: 5vh;
         }
         /*
@@ -45,10 +48,9 @@
 
 </head>
 <body>
-
     <header class="flex-container">
-            <div id="playerLP"></div>
-            <div id="enemyLP"></div>
+        <img src="./healthIcon.png" height="60vh" width="60vh">
+           
     </header>
 
 
@@ -98,7 +100,6 @@
     /*loop som pusher alle kortene inn i kort arrayet*/
     var k = 0;
     for(var i = 0; i<4 ; i++){
-        debugger;
         //TODO fikse array pushen
         playingCards.push(card+k);
         k++
