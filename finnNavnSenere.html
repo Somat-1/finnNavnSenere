@@ -8,17 +8,18 @@
 
 
     <style>
+        /* body wrapper */
         body{
             height: 100vh;
             width: 100vw;
             position: fixed;
         }
-
+        /* header stilen */
         header{
             background-color: blanchedalmond;
             padding: 5vh;
         }
-
+        /*
         .flex-container {
             display: flex;
         }
@@ -27,7 +28,7 @@
             padding: 1vh;
             width: 20vw;
         }
-
+        */
         #playerLP{
             background-color: red;
             margin-right: 20vw;
@@ -65,27 +66,27 @@
     
     var playingCards = [];
 
-    var card000 = {
+    var card0 = {
         cardNumber: 000,
         cardName: 'Punch Attack',
         cardCost: 10,
         cardDamage: 10
     };
-    var card001 = {
+    var card1 = {
         cardNumber: 001,
         cardName: 'Stamina Charge',
         cardCost: 10
 
         
     };
-    var card002 = {
+    var card2 = {
         cardNumber: 002,
         cardName: 'Start a Riot',
         cardCost: 20,
         cardDamage: 15
 
     };
-    var card003 = {
+    var card3 = {
         cardNumber: 003,
         cardName: 'One Punch',
         cardCost: 150,
@@ -93,24 +94,23 @@
 
     };
 
-    /*for(var i = 0; i<4 ; i++){
-        var i = 000;
-        playingCards.push(card+i);
-        
-        if(i<10){
-            i+
-        }else{
-
-        }
-
-    }*/
+    playingCards.push(card3);
+    /*loop som pusher alle kortene inn i kort arrayet*/
+    var k = 0;
+    for(var i = 0; i<4 ; i++){
+        debugger;
+        //TODO fikse array pushen
+        playingCards.push(card+k);
+        k++
+    }
 
    
 
 
     var enemyBosses = [];
-    var charPutin = {
-        name: PewTinPie
+    var Putin = {
+        name: 'PewTinPie',
+
     }
     
     
