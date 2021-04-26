@@ -78,6 +78,11 @@
             transition: width .5s linear;
         }
 
+        #playerName, #enemyName{
+            font-family: "ＭＳ Ｐゴシック";
+            color: white;
+        }
+
     </style>
 
 
@@ -90,6 +95,9 @@
 
         <div id="player-stats">
                 <img src="./healthIcon.png" height="60vh" width="60vh">
+                <div id="playerName">
+                    PLAYER NAME
+                </div>
                 <div class="health-bar">
                     <div class="player-bar" id="health-bar"></div>
                 </div>
@@ -97,6 +105,9 @@
 
         <div id="enemy-stats">
             <img src="./healthIcon.png" height="60vh" width="60vh">
+            <div id="enemyName">
+                ENEMY NAME
+            </div>
             <div class="enemy-health-bar">
                 <div class="enemy-bar" id="enemy-health-bar"></div>
             </div>
