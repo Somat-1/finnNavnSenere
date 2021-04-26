@@ -32,25 +32,77 @@
             width: 20vw;
         }
         */
-        #playerLP{
-            background-color: red;
-            margin-right: 20vw;
+        .health-bar {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 200px;
+            height: 20px;
+            padding: 5px;
+            background: black;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 10px;
+            position: absolute;
         }
 
-        #enemyLP{
-            background-color: red;
-            margin-right: 2vw;
+        .enemy-health-bar {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 200px;
+            height: 20px;
+            padding: 5px;
+            background: black;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 10px;
+            position: absolute;
         }
 
+
+
+        .player-bar {
+            background: red;
+            width: 100%;
+            height: 10px;
+            position: relative;
+            transition: width .5s linear;
+        }
+        .enemy-bar {
+            background: red;
+            width: 100%;
+            right: 0;
+            height: 10px;
+            position: relative;
+            transition: width .5s linear;
+        }
 
     </style>
 
 
 </head>
 <body>
+
+   
+
     <header class="flex-container">
-        <img src="./healthIcon.png" height="60vh" width="60vh">
-           
+
+        <div id="player-stats">
+                <img src="./healthIcon.png" height="60vh" width="60vh">
+                <div class="health-bar">
+                    <div class="player-bar" id="health-bar"></div>
+                </div>
+        </div>
+
+        <div id="enemy-stats">
+            <img src="./healthIcon.png" height="60vh" width="60vh">
+            <div class="enemy-health-bar">
+                <div class="enemy-bar" id="enemy-health-bar"></div>
+            </div>
+    </div>
+
+        
     </header>
 
 
@@ -96,16 +148,15 @@
 
     };
 
-    playingCards.push(card3);
-    /*loop som pusher alle kortene inn i kort arrayet*/
+/*     playingCards.push(card3);
+    loop som pusher alle kortene inn i kort arrayet
     var k = 0;
     for(var i = 0; i<4 ; i++){
         //TODO fikse array pushen
         playingCards.push(card+k);
         k++
-    }
+    } */
 
-   
 
 
     var enemyBosses = [];
@@ -115,9 +166,29 @@
     }
     
     
-    
-    
-    
+    function test(){
+
+        var damage = prompt('damage');
+        hit(damage);
+        enemyHit(damage);
+    }
+
+    function hit(damage){
+        var healthBar = document.getElementById('health-bar');
+        healthBar.style.width = (100-damage)+'%';
+        /*TODO:
+       damageTaken = +damage;
+       if(damageTaken>100){
+           alert('game over')
+       } */
+    }
+
+    function enemyHit(damage){
+        var healthBar = document.getElementById('enemy-health-bar');
+        healthBar.style.width = (100-damage)+'%';
+    }
+
+    test();
     </script>
 
 </html>
