@@ -83,6 +83,25 @@
             color: white;
         }
 
+        #playerHealthContainer{
+            height: 60px;
+            width: 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        .healthIcon{
+            height: 100%;;
+            width: 100%;
+        }
+
+        .centered{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
     </style>
 
 
@@ -94,8 +113,12 @@
     <header class="flex-container">
 
         <div id="player-stats">
-                <img src="./healthIcon.png" height="60vh" width="60vh">
-                <div id="playerName">
+                <div id="playerHealthContainer">
+                   <img class="healthIcon" src="./healthIcon.png" height="60vh" width="60vh">
+                    <div class="centered"> hei</div>
+        </div>
+                
+        <div id="playerName">
                     PLAYER NAME
                 </div>
                 <div class="health-bar">
@@ -159,7 +182,13 @@
 
     };
 
-/*     playingCards.push(card3);
+    playingCards.push(card0);
+    playingCards.push(card1);
+    playingCards.push(card2);
+    playingCards.push(card3);
+
+
+    /*     playingCards.push(card3);
     loop som pusher alle kortene inn i kort arrayet
     var k = 0;
     for(var i = 0; i<4 ; i++){
@@ -178,7 +207,6 @@
     
     
     function test(){
-
         var damage = prompt('damage');
         hit(damage);
         enemyHit(damage);
