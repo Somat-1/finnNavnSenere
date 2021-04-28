@@ -90,6 +90,13 @@
             text-align: center;
         }
 
+        #enemyHealthContainer{
+            height: 60px;
+            width: 60px;
+            position: relative;
+            text-align: center;
+        }
+
         .healthIcon{
             height: 100%;;
             width: 100%;
@@ -115,8 +122,8 @@
         <div id="player-stats">
                 <div id="playerHealthContainer">
                    <img class="healthIcon" src="./healthIcon.png" height="60vh" width="60vh">
-                    <div class="centered"> hei</div>
-        </div>
+                    <div class="centered" id="playerHP"> hei</div>
+                </div>
                 
         <div id="playerName">
                     PLAYER NAME
@@ -127,7 +134,10 @@
         </div>
 
         <div id="enemy-stats">
-            <img src="./healthIcon.png" height="60vh" width="60vh">
+            <div id="enemyHealthContainer">
+                <img src="./healthIcon.png" height="60vh" width="60vh">
+                <div class="centered" id="enemyHP"></div>
+            </div>
             <div id="enemyName">
                 ENEMY NAME
             </div>
@@ -215,6 +225,9 @@
     function hit(damage){
         var healthBar = document.getElementById('health-bar');
         healthBar.style.width = (100-damage)+'%';
+        var health = healthBar.style.width;
+        debugger;
+        document.getElementById('playerHP').innerHTML = health;
         /*TODO:
        damageTaken = +damage;
        if(damageTaken>100){
@@ -225,6 +238,8 @@
     function enemyHit(damage){
         var healthBar = document.getElementById('enemy-health-bar');
         healthBar.style.width = (100-damage)+'%';
+        var health = healthBar.style.width;
+        document.getElementById('enemyHP').innerHTML = health;
     }
 
     test();
