@@ -109,6 +109,39 @@
             transform: translate(-50%, -50%);
         }
 
+        #cardsContainer{
+            display: flex;
+            flex-direction: row;
+            background-color: transparent;
+            position: fixed;
+            height: 35vh;
+            width: 100vw;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            padding: 0 50px;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+
+
+        }
+
+        .card{
+            flex-basis: auto;
+            background-color: teal;
+            border-style: solid;
+            border-color: black;
+            height: 100vh;
+            width: 15vw;
+            margin: 0 -25px;
+            position: relative;
+            
+
+        }
+
     </style>
 
 
@@ -133,7 +166,7 @@
                 </div>
         </div>
 
-        <div id="enemy-stats">
+    <div id="enemy-stats">
             <div id="enemyHealthContainer">
                 <img src="./healthIcon.png" height="60vh" width="60vh">
                 <div class="centered" id="enemyHP">100</div>
@@ -146,11 +179,15 @@
             </div>
     </div>
 
+
+    
         
     </header>
 
 
 
+
+    <div id="cardsContainer" ></div>
 
 
     
@@ -162,51 +199,56 @@
     var playerLP = 100;
     var playerStamina = 100;
     
-    var playingCards = [];
-
-    var card0 = {
+    var playingCards = [{
         cardNumber: 000,
         cardName: 'Punch Attack',
         cardCost: 10,
         cardDamage: 10
-    };
-    var card1 = {
+    },{
         cardNumber: 001,
         cardName: 'Stamina Charge',
         cardCost: 10
 
         
-    };
-    var card2 = {
+    },{
         cardNumber: 002,
         cardName: 'Start a Riot',
         cardCost: 20,
         cardDamage: 15
 
-    };
-    var card3 = {
+    },{
         cardNumber: 003,
         cardName: 'One Punch',
         cardCost: 150,
         cardDamage: 100
 
-    };
+    },{
+        cardNumber: 004,
+        cardName: 'Fart Attack',
+        cardCost: 25,
+        cardDamage: 30
+    },{
+        cardNumber: 005,
+        cardName: 'Super Sonic Scream',
+        cardCost: 20,
+        cardDamage: 25
+    },{
+        cardNumber: 006,
+        cardName: 'Hyper Beam',
+        cardCost: 30,
+        cardDamage: 25
+    }];
 
-    playingCards.push(card0);
+
+   /*  playingCards.push(card0);
     playingCards.push(card1);
     playingCards.push(card2);
     playingCards.push(card3);
+    playingCards.push(card4);
+    playingCards.push(card5); */
 
 
-    /*     playingCards.push(card3);
-    loop som pusher alle kortene inn i kort arrayet
-    var k = 0;
-    for(var i = 0; i<4 ; i++){
-        //TODO fikse array pushen
-        playingCards.push(card+k);
-        k++
-    } */
-
+   
 
 
     var enemyBosses = [];
@@ -226,7 +268,6 @@
         var healthBar = document.getElementById('health-bar');
         healthBar.style.width = (100-damage)+'%';
         var health = healthBar.style.width;
-        debugger;
         document.getElementById('playerHP').innerHTML = health;
         /*TODO:
        damageTaken = +damage;
@@ -242,7 +283,24 @@
         document.getElementById('enemyHP').innerHTML = health;
     }
 
-    test();
+    function printCards(){
+
+        for(var i= 0 ; i<5 ; i++){
+           var randomCardNumber = Math.floor(Math.random() * 6);
+            
+           document.getElementById('cardsContainer').innerHTML += 
+           '<div class="card"><div class="cardName">'+playingCards[randomCardNumber].cardName+
+           '</div><div id="cardCost"></div><div id="cardDamage"></div></div>';
+
+        }
+    }
+
+
+
+
+    //test();
+    printCards();
+
     </script>
 
 </html>
