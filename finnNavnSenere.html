@@ -114,7 +114,7 @@
             flex-direction: row;
             background-color: transparent;
             position: fixed;
-            height: 35vh;
+            height: 30vh;
             width: 100vw;
             bottom: 0;
             left: 0;
@@ -138,8 +138,11 @@
             width: 15vw;
             margin: 0 -25px;
             position: relative;
-            
-
+        }
+    
+        .card:hover{
+            background-color: tomato;
+            -webkit-transform: translateY(-65px);
         }
 
     </style>
@@ -196,7 +199,8 @@
 
 
 <script>
-    var playerLP = 100;
+    var playerHP = 100;
+    var enemyHP = 100;
     var playerStamina = 100;
     
     var playingCards = [{
@@ -240,12 +244,6 @@
     }];
 
 
-   /*  playingCards.push(card0);
-    playingCards.push(card1);
-    playingCards.push(card2);
-    playingCards.push(card3);
-    playingCards.push(card4);
-    playingCards.push(card5); */
 
 
    
@@ -283,19 +281,35 @@
         document.getElementById('enemyHP').innerHTML = health;
     }
 
+    function printCard(randomCardNumber){
+
+        var card =
+        '<div class="card" onclick="playCard(this,'+randomCardNumber+
+        ')" ><div class="cardName">'+playingCards[randomCardNumber].cardName+
+        '</div><div id="cardCost">'+playingCards[randomCardNumber].cardCost+
+        '</div><div id="cardDamage">'+playingCards[randomCardNumber].cardDamage+
+        '</div></div>';
+        return card;
+       
+    }
+
     function printCards(){
 
         for(var i= 0 ; i<5 ; i++){
            var randomCardNumber = Math.floor(Math.random() * 6);
-            
-           document.getElementById('cardsContainer').innerHTML += 
-           '<div class="card"><div class="cardName">'+playingCards[randomCardNumber].cardName+
-           '</div><div id="cardCost"></div><div id="cardDamage"></div></div>';
+           document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+           
 
         }
     }
 
-
+    function playCard(el,index){
+        var randomCardNumber = Math.floor(Math.random() * 6);
+        var enemyHitDamage = playingCards[index].cardDamage;
+        enemyHit(enemyHitDamage);
+        el.remove();
+        document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+    }
 
 
     //test();
