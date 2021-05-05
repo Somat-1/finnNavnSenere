@@ -10,7 +10,7 @@
     <style>
         /* body wrapper */
         body{
-            background-image: url(./gameBg.png);
+            background-image: url(https://i.pinimg.com/originals/16/fa/8f/16fa8fda76b69f9ff380e35ad9a01d94.jpg);
             background-repeat: no-repeat;
             background-size: auto;
             height: 100vh;
@@ -22,11 +22,54 @@
             background-color: transparent;
             padding: 5vh;
         }
+        .card{
+            background: url("cardbg.png");
+            background-size: cover;
+            cursor: pointer;
+            border-radius: 8px;
+            padding: 15px;
+            
+        }
+        .cardName{
+            font-size: 2.7vh;
+            color: white;
+            width: max-content;
+            position: relative;
+            margin: auto auto;
+        }
+        .cardName::after{
+            content: "";
+            position: absolute;
+            height: 3px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: turquoise;
+        }
+        #cardCost{
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            border: solid rgb(177, 177, 86);
+            background: rgba(177, 177, 86, 0.445);
+            border-radius: 18px;
+            width: max-content;
+            margin: auto auto;
+        }
+        #cardDamage{
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border: solid rgb(177, 86, 86);
+            background: rgba(177, 86, 86, 0.445);
+            width: max-content;
+            border-radius: 18px;
+            margin: auto auto;
+        }
         /*
         .flex-container {
             display: flex;
         }
-
         .flex-container > div {
             padding: 1vh;
             width: 20vw;
@@ -157,7 +200,7 @@
 
         <div id="player-stats">
                 <div id="playerHealthContainer">
-                   <img class="healthIcon" src="./healthIcon.png" height="60vh" width="60vh">
+                   <img class="healthIcon" src="https://github.com/Somat-1/finnNavnSenere/blob/main/healthIcon.png?raw=true" height="60vh" width="60vh">
                     <div class="centered" id="playerHP"> 100</div>
                 </div>
                 
@@ -171,7 +214,7 @@
 
     <div id="enemy-stats">
             <div id="enemyHealthContainer">
-                <img src="./healthIcon.png" height="60vh" width="60vh">
+                <img src="https://github.com/Somat-1/finnNavnSenere/blob/main/healthIcon.png?raw=true" height="60vh" width="60vh">
                 <div class="centered" id="enemyHP">100</div>
             </div>
             <div id="enemyName">
@@ -211,7 +254,8 @@
     },{
         cardNumber: 001,
         cardName: 'Stamina Charge',
-        cardCost: 10
+        cardCost: 10,
+        cardDamage: 0
 
         
     },{
@@ -286,8 +330,8 @@
         var card =
         '<div class="card" onclick="playCard(this,'+randomCardNumber+
         ')" ><div class="cardName">'+playingCards[randomCardNumber].cardName+
-        '</div><div id="cardCost">'+playingCards[randomCardNumber].cardCost+
-        '</div><div id="cardDamage">'+playingCards[randomCardNumber].cardDamage+
+        '</div><div id="cardCost">Cost: '+playingCards[randomCardNumber].cardCost+
+        '</div><div id="cardDamage">Damage: '+playingCards[randomCardNumber].cardDamage+
         '</div></div>';
         return card;
        
@@ -318,5 +362,3 @@
     </script>
 
 </html>
-
-
