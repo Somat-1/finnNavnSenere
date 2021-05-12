@@ -188,6 +188,29 @@
             -webkit-transform: translateY(-65px);
         }
 
+        #staminaBarContainer{
+
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 200px;
+            height: 20px;
+            margin-top: 20px;
+            padding:5px;
+            background: black;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 10px;
+            position: absolute;
+        }
+
+        .staminaBar{
+            background: cyan;
+            width: 100%;
+            height: 10px;
+            position: relative;
+            transition: width .5s linear;
+        }
     </style>
 
 
@@ -199,18 +222,25 @@
     <header class="flex-container">
 
             <div id="player-stats">
-                <div id="playerHealthContainer">
-                   <img class="healthIcon" src="https://github.com/Somat-1/finnNavnSenere/blob/main/healthIcon.png?raw=true" height="60vh" width="60vh">
-                <div class="centered" id="playerHP"> 100</div>
-            </div>
 
-            <div id="playerName">
+                <div id="playerHealthContainer">
+                    <img class="healthIcon" src="https://github.com/Somat-1/finnNavnSenere/blob/main/healthIcon.png?raw=true" height="60vh" width="60vh">
+                    <div class="centered" id="playerHP"> 100</div>
+                </div>
+
+                <div id="playerName">
                     PLAYER NAME
                 </div>
+
                 <div class="health-bar">
                     <div class="player-bar" id="player-health-bar"></div>
+                </div>
+
+                <div id="staminaBarContainer">
+                    <div class="staminaBar" id="staminaBar"></div>
+                </div>
+
             </div>
-        </div>
 
     <div id="enemy-stats">
             <div id="enemyHealthContainer">
@@ -292,14 +322,12 @@
     },{
         cardNumber: 007,
         cardName: 'BETA STAMINA CHARGE',
-        cardCost: 0,
-        cardStam: 20,
+        cardCost: -20,
         cardText: "Use me to refill that sweet mana of yours"
     },{
         cardNumber: 8,
         cardName: 'SUPER STAMINA CHARGE',
-        cardCost: 0,
-        cardStam: 30,
+        cardCost: -30,
         cardText: "Use me to refill that sweet mana of yours"
     },{
         cardNumber: 9,
@@ -342,7 +370,7 @@
 
     var playerHP = 100;
     var enemyHP = 100;
-    var playerStamina = 100;
+    
 
     var playerHealthBar = document.getElementById('player-health-bar');
 
@@ -362,20 +390,32 @@
     
 
     var enemyHealthBar = document.getElementById('enemy-health-bar');
+    var playerStaminaBar = document.getElementById('staminaBar');
+    var playerStamina = 100;
 
-    function enemyHit(damage){
+    function enemyHit(damage, cost){
         debugger;
-        
         enemyHP = enemyHP-damage;
-        if(enemyHP<=0){
+        playerStamina = playerStamina-cost;
+        playerStaminaBar.style.width = playerStamina+'%';
+        if(playerStamina>0){
+
+
+
+            if(enemyHP<=0){
             //TODO fikse vinn skjermen
             enemyHealthBar.style.width = 0+'%';
             document.getElementById('enemyHP').innerHTML = 0;
+            }else{
+                enemyHealthBar.style.width = enemyHP+'%';
+                var health = enemyHealthBar.style.width;
+                document.getElementById('enemyHP').innerHTML = health;
+            }
         }else{
-            enemyHealthBar.style.width = enemyHP+'%';
-            var health = enemyHealthBar.style.width;
-            document.getElementById('enemyHP').innerHTML = health;
+            alert('refill stamina')
         }
+
+        
         
     }
 
@@ -407,8 +447,9 @@
     function playCard(el,index){
         var randomCardNumber = Math.floor(Math.random() * 6);
         var enemyHitDamage = playingCards[index].cardDamage;
+        var cardCost = playingCards[index].cardCost;
 
-        enemyHit(enemyHitDamage);
+        enemyHit(enemyHitDamage, cardCost);
 
         var HitDamage = Math.floor(Math.random() * 40);
         hit(HitDamage)
