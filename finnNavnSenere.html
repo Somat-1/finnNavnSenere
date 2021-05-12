@@ -75,7 +75,8 @@
             width: 20vw;
         }
         */
-        .health-bar {
+
+         .health-bar {
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             box-sizing: border-box;
@@ -102,7 +103,9 @@
             border-radius: 10px;
             position: absolute;
         }
-
+        #playerHP, #enemyHP{
+            color: white;
+        }
 
 
         .player-bar {
@@ -124,6 +127,17 @@
         #playerName, #enemyName{
             font-family: "ＭＳ Ｐゴシック";
             color: white;
+            position: relative;
+            margin: 5px;
+        }
+        #playerName::after, #enemyName::after{
+            content: "";
+            position: absolute;
+            height: 3px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: blue;
         }
 
         #playerHealthContainer{
@@ -143,6 +157,33 @@
         .healthIcon{
             height: 100%;;
             width: 100%;
+        }
+        #player-stats{
+            position: absolute;
+            left:10%;
+        }
+        #enemy-stats{
+            position: absolute;
+            right:20%;
+        }
+        #playerChar, #enemyChar{
+            position: absolute;
+        }
+        #playerChar{
+            height: 100px;
+            width: 100px;
+            background: white;
+        }
+        #enemyChar{
+            height: 100px;
+            width: 100px;
+            background: white;
+        }
+        #fightArena{
+            background: black;
+            position: relative;
+            top: 10vh;
+            height: 55vh;
         }
 
         .centered{
@@ -260,7 +301,22 @@
         
     </header>
 
+    
 
+    <div id="fightArena">
+        <div id="playerChar">
+
+        </div>
+        <div id="enemyChar">
+
+        </div>
+
+    </div>
+
+    <div id="cardsContainer" ></div>
+
+
+    
 
 
     <div id="cardsContainer" ></div>
