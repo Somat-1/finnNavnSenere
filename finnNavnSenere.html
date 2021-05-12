@@ -256,6 +256,17 @@
             position: relative;
             transition: width .5s linear;
         }
+        #gameLog{
+            font-family: "ＭＳ Ｐゴシック";
+            color: white;
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+            background: transparent;
+            transition: 1s opacity;
+            text-align: center;
+            font-size:32px;
+        }
     </style>
 
 
@@ -305,7 +316,8 @@
         
     </header>
 
-    
+    <div id="gameLog"></div>
+
 
     <div id="fightArena">
         <div id="playerChar">
@@ -471,7 +483,8 @@
                 hit(HitDamage);
             }
         }else{
-            alert('not enough stamina, refill stamina')
+            document.getElementById('gameLog').innerHTML = 'YOU NEED TO REFILL YOU STAMINA';
+            setTimeout(gameLogFade, 2000);
         }
 
         
@@ -513,6 +526,10 @@
        
         el.remove();
         document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+    }
+
+    function gameLogFade(){
+        document.getElementById('gameLog').innerHTML = '';
     }
 
 
