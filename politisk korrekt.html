@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FINN NAVN SENERE</title>
+
+
+    <style>
+        /* body wrapper */
+        body{
+            background-image: url(./gameBg.png);
+            background-repeat: no-repeat;
+            background-size: auto;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+        }
+        /* header stilen */
+        header{
+            background-color: transparent;
+            padding: 5vh;
+        }
+        /*
+        .flex-container {
+            display: flex;
+        }
+        .flex-container > div {
+            padding: 1vh;
+            width: 20vw;
+        }
+        */
+        .health-bar {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 200px;
+            height: 20px;
+            padding: 5px;
+            background: black;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 10px;
+            position: absolute;
+        }
+
+        .enemy-health-bar {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 200px;
+            height: 20px;
+            padding: 5px;
+            background: black;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 10px;
+            position: absolute;
+        }
+
+
+
+        .player-bar {
+            background: red;
+            width: 100%;
+            height: 10px;
+            position: relative;
+            transition: width .5s linear;
+        }
+        .enemy-bar {
+            background: red;
+            width: 100%;
+            right: 0;
+            height: 10px;
+            position: relative;
+            transition: width .5s linear;
+        }
+
+        #playerName, #enemyName{
+            font-family: "ＭＳ Ｐゴシック";
+            color: white;
+        }
+
+        #playerHealthContainer{
+            height: 60px;
+            width: 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        #enemyHealthContainer{
+            height: 60px;
+            width: 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        .healthIcon{
+            height: 100%;;
+            width: 100%;
+        }
+
+        .centered{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+   
+
+    <header class="flex-container">
+
+        <div id="player-stats">
+                <div id="playerHealthContainer">
+                   <img class="healthIcon" src="./healthIcon.png" height="60vh" width="60vh">
+                    <div class="centered" id="playerHP"> 100</div>
+                </div>
+                
+        <div id="playerName">
+                    PLAYER NAME
+                </div>
+                <div class="health-bar">
+                    <div class="player-bar" id="health-bar"></div>
+                </div>
+        </div>
+
+        <div id="enemy-stats">
+            <div id="enemyHealthContainer">
+                <img src="./healthIcon.png" height="60vh" width="60vh">
+                <div class="centered" id="enemyHP">100</div>
+            </div>
+            <div id="enemyName">
+                ENEMY NAME
+            </div>
+            <div class="enemy-health-bar">
+                <div class="enemy-bar" id="enemy-health-bar"></div>
+            </div>
+    </div>
+
+        
+    </header>
+    <div id="healthTall"></div>
+
+
+    <button id="10" onclick="fire(onclick)">10</button>
+
+    
+</body>
+
+
+
+<script>
+    var num = 100
+    var playerLP = 100;
+    var playerStamina = 100;
+
+    var playerHP = 100
+    var enemyHP = 100
+
+    var playingCards = [];
+    var buttonDamage = getElementById("10")
+
+
+    var card0 = {
+        cardNumber: 000,
+        cardName: 'Punch Attack',
+        cardCost: 10,
+        cardDamage: 10
+    };
+    var card1 = {
+        cardNumber: 001,
+        cardName: 'Stamina Charge',
+        cardCost: 10
+
+        
+    };
+    var card2 = {
+        cardNumber: 002,
+        cardName: 'Start a Riot',
+        cardCost: 20,
+        cardDamage: 15
+
+    };
+    var card3 = {
+        cardNumber: 003,
+        cardName: 'One Punch',
+        cardCost: 150,
+        cardDamage: 100
+
+    };
+
+    playingCards.push(card0);
+    playingCards.push(card1);
+    playingCards.push(card2);
+    playingCards.push(card3);
+
+
+    /*     playingCards.push(card3);
+    loop som pusher alle kortene inn i kort arrayet
+    var k = 0;
+    for(var i = 0; i<4 ; i++){
+        //TODO fikse array pushen
+        playingCards.push(card+k);
+        k++
+    } */
+
+
+    var enemyBosses = [];
+    var Putin = {
+        name: 'PewTinPie',
+
+    }
+
+   
+
+function fire(onclick){
+        Pdamage = 50;
+        hit(Pdamage)
+
+    }
+
+
+    var healthTall = getElementById("healthTall") 
+    function hit(damage){
+        var healthBar = document.getElementById('health-bar');
+        playerHP=playerHP-Pdamage;
+        healthBar.style.width = (playerHP)+'%';
+        
+        var health = healthBar.style.width;
+        debugger;
+        document.getElementById('playerHP').innerHTML = health;
+        num=playerHP
+       
+      areUded()
+    }
+
+    function enemyHit(damage){
+        var healthBar = document.getElementById('enemy-health-bar');
+        enemyHP=enemyHP-damage
+        healthBar.style.width = (enemyHP)+'%';
+        var health = healthBar.style.width;
+        document.getElementById('enemyHP').innerHTML = health;
+        
+    }
+
+    function areUded(){
+        
+        if(num = 0 || num < 1){
+     
+        gameOver()
+    }
+    }
+    
+    function gameOver(){
+        window.location.href = "Game Over.html"
+    
+    }
+
+
+
+    </script>
+
+</html>

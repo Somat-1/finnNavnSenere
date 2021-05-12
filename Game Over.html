@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html dark="true" lang="no">
+<head></head>
+    <meta charset="utf-8">
+    <title>Game Over</title>
+    <style>
+        
+        @import url('http://fonts.cdnfonts.com/css/common-pixel');
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+        body {
+            display: table;
+        }
+        .gameOver{
+        
+            font-size: 40px;
+            font-family: 'Common Pixel', sans-serif;
+        }
+        .container{
+            margin: 50px;
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+            
+        }
+
+        .pixel{
+            padding: 0;
+            border: none;
+            background: none;
+            font-family: 'Common Pixel', sans-serif;
+            background-image: url('button2.png');
+            width: 142px;
+            height: 31px;
+            font-size: 20px;
+            background-repeat: no-repeat;
+            color: white;
+            
+        }
+        
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+    <div class="gameOver">GAME OVER</div>
+    <br>
+    
+    <button class="pixel" onclick="MainMenu(onclick)">MAIN MENU</button>
+    </div>
+
+    <script>
+   function MainMenu(onclick){
+    window.location.href = "politisk korrekt.html"
+   }
+
+    </script>
+</body>
+</html>
