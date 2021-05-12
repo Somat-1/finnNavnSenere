@@ -398,9 +398,8 @@
         enemyHP = enemyHP-damage;
         playerStamina = playerStamina-cost;
         playerStaminaBar.style.width = playerStamina+'%';
+
         if(playerStamina>0){
-
-
 
             if(enemyHP<=0){
             //TODO fikse vinn skjermen
@@ -410,9 +409,12 @@
                 enemyHealthBar.style.width = enemyHP+'%';
                 var health = enemyHealthBar.style.width;
                 document.getElementById('enemyHP').innerHTML = health;
+
+                var HitDamage = Math.floor(Math.random() * 40);
+                hit(HitDamage);
             }
         }else{
-            alert('refill stamina')
+            alert('not enough stamina, refill stamina')
         }
 
         
@@ -450,9 +452,6 @@
         var cardCost = playingCards[index].cardCost;
 
         enemyHit(enemyHitDamage, cardCost);
-
-        var HitDamage = Math.floor(Math.random() * 40);
-        hit(HitDamage)
        
         el.remove();
         document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
