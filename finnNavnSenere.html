@@ -198,18 +198,18 @@
 
     <header class="flex-container">
 
-        <div id="player-stats">
+            <div id="player-stats">
                 <div id="playerHealthContainer">
                    <img class="healthIcon" src="https://github.com/Somat-1/finnNavnSenere/blob/main/healthIcon.png?raw=true" height="60vh" width="60vh">
-                    <div class="centered" id="playerHP"> 100</div>
-                </div>
-                
-        <div id="playerName">
+                <div class="centered" id="playerHP"> 100</div>
+            </div>
+
+            <div id="playerName">
                     PLAYER NAME
                 </div>
                 <div class="health-bar">
                     <div class="player-bar" id="player-health-bar"></div>
-                </div>
+            </div>
         </div>
 
     <div id="enemy-stats">
@@ -246,43 +246,79 @@
     
     var playingCards = [{
         cardNumber: 000,
-        cardName: 'Punch Attack',
+        cardName: 'PUNCH ATTACK',
         cardCost: 10,
-        cardDamage: 10
+        cardDamage: 10,
+        cardText: "The most basic and common attack you'll find, the thing it all starts with"
     },{
         cardNumber: 001,
-        cardName: 'Stamina Charge',
+        cardName: 'FORGIVING HAND',
         cardCost: 10,
-        cardDamage: 0
+        cardDamage:-20,
+        cardText: "Feeling cocky eey? Use this to give your enemy a second chance"
 
         
     },{
         cardNumber: 002,
-        cardName: 'Start a Riot',
+        cardName: 'START A RIOT',
         cardCost: 20,
-        cardDamage: 15
+        cardDamage: 15,
+        cardText: "Classic one isn't it?"
 
     },{
         cardNumber: 003,
-        cardName: 'One Punch',
-        cardCost: 150,
-        cardDamage: 50
+        cardName: 'ONE PUNCH',
+        cardCost: 50,
+        cardDamage: 50,
+        cardText: "A fierce attack"
 
     },{
         cardNumber: 004,
-        cardName: 'Fart Attack',
+        cardName: 'FART ATTACK',
         cardCost: 25,
-        cardDamage: 30
+        cardDamage: 30,
+        cardText: "I'm out of words for this one"
     },{
         cardNumber: 005,
-        cardName: 'Super Sonic Scream',
+        cardName: 'SUPER SONIC SCREAM',
         cardCost: 20,
-        cardDamage: 25
+        cardDamage: 25,
+        cardTame: "Use that lung capacity"
     },{
         cardNumber: 006,
-        cardName: 'Hyper Beam',
+        cardName: 'HYPER BEAM',
         cardCost: 30,
         cardDamage: 25
+    },{
+        cardNumber: 007,
+        cardName: 'BETA STAMINA CHARGE',
+        cardCost: 0,
+        cardStam: 20,
+        cardText: "Use me to refill that sweet mana of yours"
+    },{
+        cardNumber: 8,
+        cardName: 'SUPER STAMINA CHARGE',
+        cardCost: 0,
+        cardStam: 30,
+        cardText: "Use me to refill that sweet mana of yours"
+    },{
+        cardNumber: 9,
+        cardName: 'CAPITAL STORMING',
+        cardCost: 40,
+        cardDamage: 30,
+        cardText: "History repeats itself huh?"
+    },{
+        cardNumber: 010,
+        cardName: 'NUCLEAR STRIKE',
+        cardCost: 30,
+        cardDamage: 40,
+        cardText: "History repeats itself huh?"
+    },{
+        cardNumber: 011,
+        cardName: 'CAPITAL STORMING',
+        cardCost: 10,
+        cardDamage: 30,
+        cardText: "History repeats itself huh?"
     }];
 
 
