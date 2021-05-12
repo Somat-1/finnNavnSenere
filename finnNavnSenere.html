@@ -378,11 +378,13 @@
         cardNumber: 007,
         cardName: 'BETA STAMINA CHARGE',
         cardCost: -20,
+        cardDamage: 0,
         cardText: "Use me to refill that sweet mana of yours"
     },{
         cardNumber: 8,
         cardName: 'SUPER STAMINA CHARGE',
         cardCost: -30,
+        cardDamage: 0,
         cardText: "Use me to refill that sweet mana of yours"
     },{
         cardNumber: 9,
@@ -393,13 +395,13 @@
     },{
         cardNumber: 010,
         cardName: 'NUCLEAR STRIKE',
-        cardCost: 30,
+        cardCost: 50,
         cardDamage: 40,
         cardText: "History repeats itself huh?"
     },{
         cardNumber: 011,
         cardName: 'CAPITAL STORMING',
-        cardCost: 10,
+        cardCost: 35,
         cardDamage: 30,
         cardText: "History repeats itself huh?"
     }];
@@ -484,6 +486,7 @@
         ')" ><div class="cardName">'+playingCards[randomCardNumber].cardName+
         '</div><div id="cardCost">Cost: '+playingCards[randomCardNumber].cardCost+
         '</div><div id="cardDamage">Damage: '+playingCards[randomCardNumber].cardDamage+
+        '</div><div id="cardText">'+playingCards[randomCardNumber].cardText+
         '</div></div>';
         return card;
        
@@ -492,7 +495,7 @@
     function printCards(){
 
         for(var i= 0 ; i<5 ; i++){
-           var randomCardNumber = Math.floor(Math.random() * 6);
+           var randomCardNumber = Math.floor(Math.random() * 12);
            document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
            
 
