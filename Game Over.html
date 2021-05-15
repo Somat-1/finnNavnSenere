@@ -34,15 +34,22 @@
         .pixel{
             padding: 0;
             border: none;
-            background: none;
+            background: black;
+            border-style: solid;
+            border-color: black;
+            border-radius: 25px;
             font-family: 'Common Pixel', sans-serif;
-            background-image: url('button2.png');
             width: 142px;
             height: 31px;
             font-size: 20px;
-            background-repeat: no-repeat;
             color: white;
-            
+            cursor: pointer;
+            transition: 0.2s ease-in;
+        }
+
+        .pixel:hover{
+            color: black;
+            background: white;
         }
         
 
