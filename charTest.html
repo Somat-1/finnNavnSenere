@@ -159,26 +159,20 @@
         }
         #playerChar, #enemyChar{
             position: absolute;
-            border-style: solid;
-            border-color: black;
-            border-radius: 25px;
         }
         #playerChar{
             height: 100px;
             width: 100px;
             left: 25vh;
             top: 20vh;
-            background: white;
         }
         #enemyChar{
             height: 100px;
             width: 100px;
-            background: white;
             right: 25vh;
             top: 20vh;
         }
         #fightArena{
-            background: black;
             position: relative;
             top: 10vh;
             height: 55vh;
@@ -311,9 +305,9 @@
         width: 340px;
         }
         .img2 {
-        left: -26px;
+        left: 100px;
         top: 250px;
-        width: 644px;
+        width: 200px;
         }
         .img3 {
         left: -36px;
@@ -332,6 +326,10 @@
 
         .person{
         display: inline-block;
+        }
+
+        #playerImage{
+            margin: auto auto;
         }
     </style>
 
@@ -399,27 +397,30 @@
             console.log(ernaStats);
             console.log(char);
             menu.remove();
+            playerName.innerHTML = "ERNA SOLBERG";
             document.getElementById("game").style.transform = "scale(1)";
             document.getElementById("playerImage").src = char;
-            document.body.style = 'background-image: url(https://i.pinimg.com/originals/16/fa/8f/16fa8fda76b69f9ff380e35ad9a01d94.jpg);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
+            document.body.style = 'background-image: url(https://github.com/Somat-1/finnNavnSenere/blob/main/arena%201.gif?raw=true);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
         }
         function charHitler(){
             char="https://github.com/Somat-1/finnNavnSenere/blob/main/hitler.png?raw=true";
             stats = hitlerStats;
           console.log(char);
           menu.remove();
+          playerName.innerHTML = "ADOLF HITLER";
           document.getElementById("game").style.transform = "scale(1)";
           document.getElementById("playerImage").src = char;
-            document.body.style = 'background-image: url(https://i.pinimg.com/originals/16/fa/8f/16fa8fda76b69f9ff380e35ad9a01d94.jpg);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
+            document.body.style = 'background-image: url(https://github.com/Somat-1/finnNavnSenere/blob/main/arena%201.gif?raw=true);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
         }
         function charTrump(){
             char="https://github.com/Somat-1/finnNavnSenere/blob/main/donald.png?raw=true";
             stats = trumpStats;
           console.log("Gangnam style");
           menu.remove();
+          playerName.innerHTML = "DONALD TRUMP";
           document.getElementById("game").style.transform = "scale(1)";
           document.getElementById("playerImage").src = char;
-            document.body.style = 'background-image: url(https://i.pinimg.com/originals/16/fa/8f/16fa8fda76b69f9ff380e35ad9a01d94.jpg);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
+            document.body.style = 'background-image: url(https://github.com/Somat-1/finnNavnSenere/blob/main/arena%201.gif?raw=true);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
         }
       </script>
       <script src="enemy.js"></script>
