@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FINN NAVN SENERE</title>
+
+
+    <style>
+        /* header stilen */
+        header{
+            background-color: transparent;
+            padding: 5vh;
+        }
+        .card{
+            background: url("https://github.com/Somat-1/finnNavnSenere/blob/main/cardbg.png?raw=true");
+            background-size: cover;
+            cursor: pointer;
+            border-radius: 8px;
+            padding: 15px;
+            
+        }
+        .cardName{
+            font-size: 2.7vh;
+            color: white;
+            width: max-content;
+            position: relative;
+            margin: auto auto;
+        }
+        .cardName::after{
+            content: "";
+            position: absolute;
+            height: 3px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: turquoise;
+        }
+        #cardCost{
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            border: solid rgb(177, 177, 86);
+            background: rgba(177, 177, 86, 0.445);
+            border-radius: 18px;
+            width: max-content;
+            margin: auto auto;
+        }
+        #cardDamage{
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border: solid rgb(177, 86, 86);
+            background: rgba(177, 86, 86, 0.445);
+            width: max-content;
+            border-radius: 18px;
+            margin: auto auto;
+        }
+        /*
+        .flex-container {
+            display: flex;
+        }
+        .flex-container > div {
+            padding: 1vh;
+            width: 20vw;
+        }
+        */
+
+         .health-bar {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 200px;
+            height: 20px;
+            padding: 5px;
+            background: black;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 10px;
+            position: absolute;
+        }
+
+        .enemy-health-bar {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 200px;
+            height: 20px;
+            padding: 5px;
+            background: black;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 10px;
+            position: absolute;
+        }
+        #playerHP, #enemyHP{
+            color: white;
+        }
+
+
+        .player-bar {
+            background: red;
+            width: 100%;
+            height: 10px;
+            position: relative;
+            transition: width .5s linear;
+        }
+        .enemy-bar {
+            background: red;
+            width: 100%;
+            right: 0;
+            height: 10px;
+            position: relative;
+            transition: width .5s linear;
+        }
+
+        #playerName, #enemyName{
+            font-family: "ＭＳ Ｐゴシック";
+            color: white;
+            position: relative;
+            margin: 5px;
+        }
+        #playerName::after, #enemyName::after{
+            content: "";
+            position: absolute;
+            height: 3px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: blue;
+        }
+
+        #playerHealthContainer{
+            height: 60px;
+            width: 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        #enemyHealthContainer{
+            height: 60px;
+            width: 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        .healthIcon{
+            height: 100%;;
+            width: 100%;
+        }
+        #player-stats{
+            position: absolute;
+            left:10%;
+        }
+        #enemy-stats{
+            position: absolute;
+            right:20%;
+        }
+        #playerChar, #enemyChar{
+            position: absolute;
+            border-style: solid;
+            border-color: black;
+            border-radius: 25px;
+        }
+        #playerChar{
+            height: 100px;
+            width: 100px;
+            left: 25vh;
+            top: 20vh;
+            background: white;
+        }
+        #enemyChar{
+            height: 100px;
+            width: 100px;
+            background: white;
+            right: 25vh;
+            top: 20vh;
+        }
+        #fightArena{
+            background: black;
+            position: relative;
+            top: 10vh;
+            height: 55vh;
+        }
+    
+
+        .centered{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #cardsContainer{
+            display: flex;
+            flex-direction: row;
+            background-color: transparent;
+            position: fixed;
+            height: 30vh;
+            width: 100vw;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 90%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            padding: 0 50px;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        .card{
+            flex-basis: auto;
+            background-color: teal;
+            border-style: solid;
+            border-color: black;
+            height: 50vh;
+            width: 15vw;
+            margin: 0 -25px;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .card:hover{
+            background-color: tomato;
+            -webkit-transform: translateY(-65px);
+        }
+
+        #staminaBarContainer{
+
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 200px;
+            height: 20px;
+            margin-top: 20px;
+            padding:5px;
+            background: black;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 10px;
+            position: absolute;
+        }
+
+        .staminaBar{
+            background: cyan;
+            width: 100%;
+            height: 10px;
+            position: relative;
+            transition: width .5s linear;
+        }
+        .person {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 280px;
+        }
+        .container {
+        border-radius: 50%;
+        height: 312px;
+        -webkit-tap-highlight-color: transparent;
+        transform: scale(0.48);
+        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        width: 400px;
+        }
+        .container:after {
+        background-color: #f2f2f2;
+        content: "";
+        height: 10px;
+        position: absolute;
+        top: 390px;
+        width: 100%;
+        }
+        .container:hover {
+        transform: scale(0.54);
+        }
+        .container-inner {
+        clip-path: path(
+            "M 390,400 C 390,504.9341 304.9341,590 200,590 95.065898,590 10,504.9341 10,400 V 10 H 200 390 Z"
+        );
+        position: relative;
+        transform-origin: 50%;
+        top: -200px;
+        }
+        .circle {
+        background-color: #fee7d3;
+        border-radius: 50%;
+        cursor: pointer;
+        height: 380px;
+        left: 10px;
+        pointer-events: none;
+        position: absolute;
+        top: 210px;
+        width: 380px;
+        }
+        .img {
+        pointer-events: none;
+        position: relative;
+        transform: translateY(50px) scale(1.00);
+        transform-origin: 50% bottom;
+        transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .container:hover .img {
+        transform: translateY(0) scale(1.2);
+        }
+        .img1 {
+        left: 30px;
+        top: 164px;
+        width: 340px;
+        }
+        .img2 {
+        left: -26px;
+        top: 250px;
+        width: 644px;
+        }
+        .img3 {
+        left: -36px;
+        top: 160px;
+        width: 466px;
+        }
+
+        .name {
+        color: #f1efeb;
+        font-size: 36px;
+        font-weight: 600;
+        margin-top: 6px;
+        text-align: center;
+        padding-left: 100px;
+        }
+
+        .person{
+        display: inline-block;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="menu">
+        <div class="person" id="person1"  onclick="charErna()">
+            
+            <div class="container">
+              <div class="container-inner">
+                <img
+                  class="circle"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/norge.png?raw=true"
+                />
+                <img
+                  class="img img2"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/New_Piskel_1.gif?raw=true"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Erna Solberg</div>
+          </div>
+          <div class="person" id="person2" onclick="charTrump()">
+            <div class="container">
+              <div class="container-inner">
+                <img
+                  class="circle"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/usa.png?raw=true"
+                />
+                <img
+                  class="img img3"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/donald.png?raw=true"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Donald Trump</div>
+          </div>
+          <div class="person" id="person3" onclick="charHitler()">
+            <div class="container">
+              <div class="container-inner">
+                <img
+                  class="circle"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/nazi.png?raw=true"
+                />
+                <img
+                  class="img img3"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/hitler.png?raw=true"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Adolf Hitler</div>
+          </div>
+      </div>
+      <script>
+        var char;
+        var stats;
+        var menu = document.getElementById("menu");
+        function charErna(){
+            char="https://github.com/Somat-1/finnNavnSenere/blob/main/New_Piskel_1.gif?raw=true";
+            stats = ernaStats;
+            console.log(ernaStats);
+            console.log(char);
+            menu.remove();
+            document.getElementById("game").style.transform = "scale(1)";
+            document.getElementById("playerImage").src = char;
+            document.body.style = 'background-image: url(https://i.pinimg.com/originals/16/fa/8f/16fa8fda76b69f9ff380e35ad9a01d94.jpg);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
+        }
+        function charHitler(){
+            char="https://github.com/Somat-1/finnNavnSenere/blob/main/hitler.png?raw=true";
+            stats = hitlerStats;
+          console.log(char);
+          menu.remove();
+          document.getElementById("game").style.transform = "scale(1)";
+          document.getElementById("playerImage").src = char;
+            document.body.style = 'background-image: url(https://i.pinimg.com/originals/16/fa/8f/16fa8fda76b69f9ff380e35ad9a01d94.jpg);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
+        }
+        function charTrump(){
+            char="https://github.com/Somat-1/finnNavnSenere/blob/main/donald.png?raw=true";
+            stats = trumpStats;
+          console.log("Gangnam style");
+          menu.remove();
+          document.getElementById("game").style.transform = "scale(1)";
+          document.getElementById("playerImage").src = char;
+            document.body.style = 'background-image: url(https://i.pinimg.com/originals/16/fa/8f/16fa8fda76b69f9ff380e35ad9a01d94.jpg);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
+        }
+      </script>
+      <script src="enemy.js"></script>
+<div id="game">
+   
+
+    <header class="flex-container">
+
+            <div id="player-stats">
+
+                <div id="playerHealthContainer">
+                    <img class="healthIcon" src="https://github.com/Somat-1/finnNavnSenere/blob/main/healthIcon.png?raw=true" height="60vh" width="60vh">
+                    <div class="centered" id="playerHP"> 100</div>
+                </div>
+
+                <div id="playerName">
+                    PLAYER NAME
+                </div>
+
+                <div class="health-bar">
+                    <div class="player-bar" id="player-health-bar"></div>
+                </div>
+
+                <div id="staminaBarContainer">
+                    <div class="staminaBar" id="staminaBar"></div>
+                </div>
+
+            </div>
+
+    <div id="enemy-stats">
+            <div id="enemyHealthContainer">
+                <img src="https://github.com/Somat-1/finnNavnSenere/blob/main/healthIcon.png?raw=true" height="60vh" width="60vh">
+                <div class="centered" id="enemyHP">100</div>
+            </div>
+            <div id="enemyName">
+                ENEMY NAME
+            </div>
+            <div class="enemy-health-bar">
+                <div class="enemy-bar" id="enemy-health-bar"></div>
+            </div>
+    </div>
+
+
+    
+        
+    </header>
+
+    
+
+    <div id="fightArena">
+        <div id="playerChar">
+            <img id="playerImage" src="">
+        </div>
+        <div id="enemyChar">
+
+        </div>
+
+    </div>
+
+
+    
+
+
+    <div id="cardsContainer" ></div>
+
+
+</div>
+</body>
+
+
+<script src="enemy.js"></script>
+<script>
+    document.getElementById("game").style.transform = "scale(0)";
+    document.body.style = ' align-items: center;display: flex;font-family: "VT323", monospace;flex-wrap: wrap;justify-content: center;height: 100vh;margin: 0;background-color: #333333;"'
+
+
+    var isAttacking;
+    var damageMultiplier = 1;
+    function main(){
+        isAttacking = true;
+    }
+    main();
+    
+    var playingCards = [{
+        cardNumber: 000,
+        cardName: 'PUNCH ATTACK',
+        cardCost: 10,
+        cardDamage: 10,
+        cardText: "The most basic and common attack you'll find, the thing it all starts with"
+    },{
+        cardNumber: 001,
+        cardName: 'FORGIVING HAND',
+        cardCost: 10,
+        cardDamage:-20,
+        cardText: "Feeling cocky eey? Use this to give your enemy a second chance"
+
+        
+    },{
+        cardNumber: 002,
+        cardName: 'START A RIOT',
+        cardCost: 20,
+        cardDamage: 15,
+        cardText: "Classic one isn't it?"
+
+    },{
+        cardNumber: 003,
+        cardName: 'ONE PUNCH',
+        cardCost: 70,
+        cardDamage: 50,
+        cardText: "A fierce attack"
+
+    },{
+        cardNumber: 004,
+        cardName: 'FART ATTACK',
+        cardCost: 25,
+        cardDamage: 30,
+        cardText: "I'm out of words for this one"
+    },{
+        cardNumber: 005,
+        cardName: 'SUPER SONIC SCREAM',
+        cardCost: 20,
+        cardDamage: 25,
+        cardTame: "Use that lung capacity"
+    },{
+        cardNumber: 006,
+        cardName: 'HYPER BEAM',
+        cardCost: 30,
+        cardDamage: 25
+    },{
+        cardNumber: 007,
+        cardName: 'BETA STAMINA CHARGE',
+        cardCost: -20,
+        cardText: "Use me to refill that sweet mana of yours"
+    },{
+        cardNumber: 8,
+        cardName: 'SUPER STAMINA CHARGE',
+        cardCost: -30,
+        cardText: "Use me to refill that sweet mana of yours"
+    },{
+        cardNumber: 9,
+        cardName: 'CAPITAL STORMING',
+        cardCost: 40,
+        cardDamage: 30,
+        cardText: "History repeats itself huh?"
+    },{
+        cardNumber: 010,
+        cardName: 'NUCLEAR STRIKE',
+        cardCost: 30,
+        cardDamage: 40,
+        cardText: "History repeats itself huh?"
+    },{
+        cardNumber: 011,
+        cardName: 'CAPITAL STORMING',
+        cardCost: 10,
+        cardDamage: 30,
+        cardText: "History repeats itself huh?"
+    }];
+
+
+
+
+   
+
+
+    var enemyBosses = [];
+    var Putin = {
+        name: 'PewTinPie',
+
+    }
+    
+    //test funksjon til å teste om health bars funker
+    function test(){
+        var damage = prompt('damage');
+        hit(damage);
+        enemyHit(damage);
+    }
+
+    var playerHP = 100;
+    var enemyHP = 100;
+    
+
+    var playerHealthBar = document.getElementById('player-health-bar');
+
+    function hit(damage){
+        playerHP = playerHP-damage;
+        if(playerHP<=0){
+            //TODO fikse game over skjermen
+            playerHealthBar.style.width = 0+'%';
+            document.getElementById('playerHP').innerHTML = 0;
+        }else{
+            playerHealthBar.style.width = playerHP+'%';
+            var health = playerHealthBar.style.width;
+            document.getElementById('playerHP').innerHTML = health;
+        }
+    }
+
+    
+
+    var enemyHealthBar = document.getElementById('enemy-health-bar');
+    var playerStaminaBar = document.getElementById('staminaBar');
+    var playerStamina = 100;
+
+    function enemyHit(damage, cost){
+        debugger;
+        var damage = damage*damageMultiplier;
+        enemyHP = enemyHP-damage;
+        playerStamina = playerStamina-cost;
+        playerStaminaBar.style.width = playerStamina+'%';
+    if(isAttacking=false){
+        return
+    }
+    else{
+        if(playerStamina>0){
+
+            if(enemyHP<=0){
+            //TODO fikse vinn skjermen
+            enemyHealthBar.style.width = 0+'%';
+            document.getElementById('enemyHP').innerHTML = 0;
+            }else{
+                enemyHealthBar.style.width = enemyHP+'%';
+                var health = enemyHealthBar.style.width;
+                document.getElementById('enemyHP').innerHTML = health;
+
+                var HitDamage = Math.floor(Math.random() * 40);
+                hit(HitDamage);
+            }
+        }else{
+            alert('not enough stamina, refill stamina')
+        }
+
+    }
+        
+    }
+
+    //funksjonen til å printe ett kort
+    function printCard(randomCardNumber){
+
+        var card =
+        '<div class="card" onclick="playCard(this,'+randomCardNumber+
+        ')" ><div class="cardName">'+playingCards[randomCardNumber].cardName+
+        '</div><div id="cardCost">Cost: '+playingCards[randomCardNumber].cardCost+
+        '</div><div id="cardDamage">Damage: '+playingCards[randomCardNumber].cardDamage+
+        '</div></div>';
+        return card;
+       
+    }
+    //funksjonen som printer alle korta
+    function printCards(){
+
+        for(var i= 0 ; i<5 ; i++){
+           var randomCardNumber = Math.floor(Math.random() * 6);
+           document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+           
+
+        }
+    }
+
+
+    //funksjonen som utløses ved at spilleren velger og trykker på et av kortenee
+    function playCard(el,index){
+        var randomCardNumber = Math.floor(Math.random() * 6);
+        var enemyHitDamage = playingCards[index].cardDamage;
+        var cardCost = playingCards[index].cardCost;
+
+        enemyHit(enemyHitDamage, cardCost);
+       
+        el.remove();
+        document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+    }
+
+
+    //test();
+    printCards();
+    document.getElementById("playerImage").src = char;
+    console.log(char);
+
+    </script>
+
+</html>
