@@ -8,22 +8,13 @@
 
 
     <style>
-        /* body wrapper */
-        body{
-            background-image: url(https://i.pinimg.com/originals/16/fa/8f/16fa8fda76b69f9ff380e35ad9a01d94.jpg);
-            background-repeat: no-repeat;
-            background-size: auto;
-            height: 100vh;
-            width: 100vw;
-            position: absolute;
-        }
         /* header stilen */
         header{
             background-color: transparent;
             padding: 5vh;
         }
         .card{
-            background: url("https://github.com/Somat-1/finnNavnSenere/blob/main/cardbg.png?raw=true");
+            background: url("https://github.com/Somat-1/finnNavnSenere/blob/main/cardbackground.png?raw=true");
             background-size: cover;
             cursor: pointer;
             border-radius: 8px;
@@ -129,17 +120,8 @@
             color: white;
             position: relative;
             margin: 5px;
+            font-weight: bold;
         }
-        #playerName::after, #enemyName::after{
-            content: "";
-            position: absolute;
-            height: 3px;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            background: blue;
-        }
-
         #playerHealthContainer{
             height: 60px;
             width: 60px;
@@ -172,23 +154,21 @@
         #playerChar{
             height: 100px;
             width: 100px;
-            background: white;
             left: 25vh;
             top: 20vh;
         }
         #enemyChar{
             height: 100px;
             width: 100px;
-            background: white;
             right: 25vh;
             top: 20vh;
         }
         #fightArena{
-            background: black;
             position: relative;
             top: 10vh;
             height: 55vh;
         }
+    
 
         .centered{
             position: absolute;
@@ -203,18 +183,17 @@
             background-color: transparent;
             position: fixed;
             height: 30vh;
-            width: 100vw;
+            width: 95vw;
             bottom: 0;
             left: 0;
             right: 0;
+            top: 100%;
             display: -webkit-box;
             display: -ms-flexbox;
             padding: 0 50px;
             -webkit-box-pack: center;
             -ms-flex-pack: center;
             justify-content: center;
-
-
         }
 
         .card{
@@ -222,10 +201,11 @@
             background-color: teal;
             border-style: solid;
             border-color: black;
-            height: 100vh;
+            height: 30vh;
             width: 15vw;
             margin: 0 -25px;
-            position: relative;
+            overflow: hidden;
+            bottom: 0;
         }
     
         .card:hover{
@@ -256,6 +236,97 @@
             position: relative;
             transition: width .5s linear;
         }
+        .person {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 280px;
+        }
+        .container {
+        border-radius: 50%;
+        height: 312px;
+        -webkit-tap-highlight-color: transparent;
+        transform: scale(0.48);
+        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        width: 400px;
+        }
+        .container:after {
+        background-color: #f2f2f2;
+        content: "";
+        height: 10px;
+        position: absolute;
+        top: 390px;
+        width: 100%;
+        }
+        .container:hover {
+        transform: scale(0.54);
+        }
+        .container-inner {
+        clip-path: path(
+            "M 390,400 C 390,504.9341 304.9341,590 200,590 95.065898,590 10,504.9341 10,400 V 10 H 200 390 Z"
+        );
+        position: relative;
+        transform-origin: 50%;
+        top: -200px;
+        }
+        .circle {
+        background-color: #fee7d3;
+        border-radius: 50%;
+        cursor: pointer;
+        height: 380px;
+        left: 10px;
+        pointer-events: none;
+        position: absolute;
+        top: 210px;
+        width: 380px;
+        }
+        .img {
+        pointer-events: none;
+        position: relative;
+        transform: translateY(50px) scale(1.00);
+        transform-origin: 50% bottom;
+        transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .container:hover .img {
+        transform: translateY(0) scale(1.2);
+        }
+        .img1 {
+        left: 30px;
+        top: 164px;
+        width: 340px;
+        }
+        .img2 {
+        left: 100px;
+        top: 250px;
+        width: 200px;
+        }
+        .img3 {
+        left: -36px;
+        top: 160px;
+        width: 466px;
+        }
+
+        .name {
+        color: #f1efeb;
+        font-size: 36px;
+        font-weight: 600;
+        margin-top: 6px;
+        text-align: center;
+        padding-left: 100px;
+        }
+
+        .person{
+        display: inline-block;
+        }
+
+        #playerImage{
+            height: 400px;
+            transform: scaleX(-1);
+            margin: auto auto;
+            position: absolute;
+            top: -15vh;
+            left: -5vw;
+        }
         #gameLog{
             font-family: "ＭＳ Ｐゴシック";
             color: white;
@@ -267,12 +338,143 @@
             text-align: center;
             font-size:32px;
         }
+        #enemyImage{
+            height: 400px;
+            transform: scaleX(-1);
+            margin: auto auto;
+            position: absolute;
+            top: -15vh;
+            right: 2vw;
+        }
+        #playerAttackImage{
+            position: absolute;
+            right: 0;
+            height: 200px;
+        }
+        @keyframes moveAttack{
+            from{
+                transform:translateX(0%);
+            }
+            to{
+                transform: translateX(70vw);
+            }
+        }
+
+        @keyframes wobble{
+            0%{
+                transform: translateX(0%);
+            }
+            25%{
+                transform: translateX(2%);
+            }
+            50%{
+                transform: translateX(4%);
+            }
+            75%{
+                transform: translateX(2%);
+            }
+            100%{
+                transform: translateX(0%);
+            }
+        }
+
     </style>
 
 
 </head>
 <body>
-
+    <div id="menu">
+        <div class="person" id="person1"  onclick="charErna()">
+            
+            <div class="container">
+              <div class="container-inner">
+                <img
+                  class="circle"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/norge.png?raw=true"
+                />
+                <img
+                  class="img img2"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/New_Piskel_1.gif?raw=true"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Erna Solberg</div>
+          </div>
+          <div class="person" id="person2" onclick="charTrump()">
+            <div class="container">
+              <div class="container-inner">
+                <img
+                  class="circle"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/usa.png?raw=true"
+                />
+                <img
+                  class="img img3"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/donald.png?raw=true"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Donald Trump</div>
+          </div>
+          <div class="person" id="person3" onclick="charHitler()">
+            <div class="container">
+              <div class="container-inner">
+                <img
+                  class="circle"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/nazi.png?raw=true"
+                />
+                <img
+                  class="img img3"
+                  src="https://github.com/Somat-1/finnNavnSenere/blob/main/hitler.png?raw=true"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Adolf Hitler</div>
+          </div>
+      </div>
+      <script>
+        var enemy = "https://github.com/Somat-1/finnNavnSenere/blob/7de898d1f5bd23316d497b82abfc2ce705e14cbc/hitler.png?raw=true";
+        var char;
+        var stats;
+        var menu = document.getElementById("menu");
+        function charErna(){
+            char="https://github.com/Somat-1/finnNavnSenere/blob/main/ernamad.gif?raw=true";
+            stats = ernaStats;
+            charName = 'ERNA';
+            console.log(ernaStats.damageMultiplier);
+            console.log(char);
+            menu.remove();
+            playerName.innerHTML = "ERNA SOLBERG";
+            document.getElementById("game").style.transform = "scale(1)";
+            document.getElementById("playerImage").src = char;
+            document.getElementById("enemyImage").src = enemy;
+            document.body.style = 'background-image: url(https://github.com/Somat-1/finnNavnSenere/blob/main/Arena%204.gif?raw=true);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
+        }
+        function charHitler(){
+            char="https://github.com/Somat-1/finnNavnSenere/blob/7de898d1f5bd23316d497b82abfc2ce705e14cbc/Hitler-gif-drawing.gif?raw=true";
+            stats = hitlerStats;
+          console.log(char);
+          menu.remove();
+          playerName.innerHTML = "ADOLF HITLER";
+          document.getElementById("game").style.transform = "scale(1)";
+          document.getElementById("playerImage").src = char;
+            document.body.style = 'background-image: url(https://github.com/Somat-1/finnNavnSenere/blob/main/Arena%204.gif?raw=true);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
+        }
+        function charTrump(){
+            char="https://github.com/Somat-1/finnNavnSenere/blob/main/donald.png?raw=true";
+            stats = trumpStats;
+          console.log("Gangnam style");
+          menu.remove();
+          playerName.innerHTML = "DONALD TRUMP";
+          document.getElementById("game").style.transform = "scale(1)";
+          document.getElementById("playerImage").src = char;
+            document.body.style = 'background-image: url(https://github.com/Somat-1/finnNavnSenere/blob/main/Arena%204.gif?raw=true);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
+        }
+      </script>
+      <script src="enemy.js"></script>
+<div id="game">
    
 
     <header class="flex-container">
@@ -318,28 +520,41 @@
 
     <div id="gameLog"></div>
 
-
     <div id="fightArena">
         <div id="playerChar">
-
+            <img id="playerImage" src="">
+            <img id="playerAttackImage" src="">
         </div>
         <div id="enemyChar">
-
+            <img id="enemyImage" src="">
         </div>
 
     </div>
 
+
     
+
+
     <div id="cardsContainer" ></div>
 
 
-    
+</div>
 </body>
 
 
-
+<script src="enemy.js"></script>
 <script>
-    
+    document.getElementById("game").style.transform = "scale(0)";
+    document.body.style = ' align-items: center;display: flex;font-family: "VT323", monospace;flex-wrap: wrap;justify-content: center;height: 100vh;margin: 0;background-color: #333333;"'
+    var attackAnimation = document.getElementById('playerAttackImage');
+    var animationDelay = Math.floor(Math.random() * 1000);
+    var isAttacking;
+    var damageMultiplier = 1;
+    var battlesWon = 0;
+    function main(){
+        isAttacking = true;
+    }
+    main();
     
     var playingCards = [{
         cardNumber: 000,
@@ -352,7 +567,8 @@
         cardName: 'FORGIVING HAND',
         cardCost: 10,
         cardDamage:-20,
-        cardText: "Feeling cocky eey? Use this to give your enemy a second chance"
+        cardText: "Feeling cocky eey? Use this to give your enemy a second chance",
+        cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/ForgivingHand.gif?raw=true"
 
         
     },{
@@ -385,7 +601,8 @@
         cardNumber: 006,
         cardName: 'HYPER BEAM',
         cardCost: 30,
-        cardDamage: 25
+        cardDamage: 25,
+        cardAttack:"hyperBeam.gif"
     },{
         cardNumber: 007,
         cardName: 'BETA STAMINA CHARGE',
@@ -407,15 +624,22 @@
     },{
         cardNumber: 010,
         cardName: 'NUCLEAR STRIKE',
-        cardCost: 50,
+        cardCost: 30,
         cardDamage: 40,
-        cardText: "History repeats itself huh?"
+        cardText: "History repeats itself huh?",
+        cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/nukeAttack.gif?raw=true"
     },{
         cardNumber: 011,
         cardName: 'CAPITAL STORMING',
-        cardCost: 35,
+        cardCost: 10,
         cardDamage: 30,
         cardText: "History repeats itself huh?"
+    },{
+        cardNumber: 012,
+        cardName: 'TACTICAL RETRAT',
+        cardCost: -50,
+        cardDamage: -10,
+        cardText: "Heals your enemy, but refills your stamina"
     }];
 
 
@@ -464,10 +688,14 @@
 
     function enemyHit(damage, cost){
         debugger;
+        var damage = damage*damageMultiplier;
         enemyHP = enemyHP-damage;
         playerStamina = playerStamina-cost;
         playerStaminaBar.style.width = playerStamina+'%';
-
+    if(isAttacking=false){
+        return
+    }
+    else{
         if(playerStamina>0){
 
             if(enemyHP<=0){
@@ -481,14 +709,17 @@
 
                 var HitDamage = Math.floor(Math.random() * 40);
                 hit(HitDamage);
+                isAttacking=false;
             }
         }else{
             document.getElementById('gameLog').innerHTML = 'YOU NEED TO REFILL YOU STAMINA';
             setTimeout(gameLogFade, 2000);
         }
-
+    }
         
-        
+    }
+    function gameLogFade(){
+        document.getElementById('gameLog').innerHTML = '';
     }
 
     //funksjonen til å printe ett kort
@@ -499,7 +730,6 @@
         ')" ><div class="cardName">'+playingCards[randomCardNumber].cardName+
         '</div><div id="cardCost">Cost: '+playingCards[randomCardNumber].cardCost+
         '</div><div id="cardDamage">Damage: '+playingCards[randomCardNumber].cardDamage+
-        '</div><div id="cardText">'+playingCards[randomCardNumber].cardText+
         '</div></div>';
         return card;
        
@@ -508,33 +738,41 @@
     function printCards(){
 
         for(var i= 0 ; i<5 ; i++){
-           var randomCardNumber = Math.floor(Math.random() * 12);
+           var randomCardNumber = Math.floor(Math.random() * 11);
            document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
-           
-
         }
     }
 
 
     //funksjonen som utløses ved at spilleren velger og trykker på et av kortenee
     function playCard(el,index){
-        var randomCardNumber = Math.floor(Math.random() * 6);
+        var randomCardNumber = Math.floor(Math.random() * 13);
         var enemyHitDamage = playingCards[index].cardDamage;
         var cardCost = playingCards[index].cardCost;
-
+        attackAnimation.src = playingCards[index].cardAttack;
+        attackAnimation.style = 'position: absolute;right: 0;top:-10vh;height: 200px;animation: moveAttack 1s infinite linear;'
         enemyHit(enemyHitDamage, cardCost);
-       
+       setTimeout(removeAttack, 1000);
         el.remove();
         document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
     }
-
-    function gameLogFade(){
-        document.getElementById('gameLog').innerHTML = '';
+    function removeAttack(){
+        document.getElementById("playerAttackImage").src = '';
+        attackAnimation.style = 'position: absolute;right: 0;height: 200px;'
     }
 
 
     //test();
     printCards();
+    document.getElementById("playerImage").src = char;
+    console.log(char);
+
+    function wobble(){
+        var animationDelay = 1000;
+        document.getElementById('playerImage').style.animation =animationDelay+'ms wobble infinite';
+        }
+        wobble();
+        
 
     </script>
 
