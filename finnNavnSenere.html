@@ -314,6 +314,14 @@
         text-align: center;
         padding-left: 100px;
         }
+        .charDesc {
+        color: #ff3a3a;
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 6px;
+        text-align: center;
+        padding-left: 100px;
+        }
 
         .person{
         display: inline-block;
@@ -400,6 +408,7 @@
             </div>
             <div class="divider"></div>
             <div class="name">Erna Solberg</div>
+            <div class="charDesc">+Health<br>-Damage</div>
           </div>
           <div class="person" id="person2" onclick="charTrump()">
             <div class="container">
@@ -416,6 +425,7 @@
             </div>
             <div class="divider"></div>
             <div class="name">Donald Trump</div>
+            <div class="charDesc">Normal Health<br>and Damage</div>
           </div>
           <div class="person" id="person3" onclick="charHitler()">
             <div class="container">
@@ -432,44 +442,59 @@
             </div>
             <div class="divider"></div>
             <div class="name">Adolf Hitler</div>
+            <div class="charDesc">-Health<br>+Damage</div>
           </div>
       </div>
       <script>
-        var enemy = "https://github.com/Somat-1/finnNavnSenere/blob/7de898d1f5bd23316d497b82abfc2ce705e14cbc/hitler.png?raw=true";
+        var enemy;
         var char;
         var stats;
         var menu = document.getElementById("menu");
         function charErna(){
             char="https://github.com/Somat-1/finnNavnSenere/blob/main/ernamad.gif?raw=true";
             stats = ernaStats;
+            enemy = 'https://github.com/Somat-1/finnNavnSenere/blob/main/Hitler.gif?raw=true';
             charName = 'ERNA';
+            damageMultiplier = 0.7;
+            hitMultiplier = 0.8;
             console.log(ernaStats.damageMultiplier);
             console.log(char);
             menu.remove();
             playerName.innerHTML = "ERNA SOLBERG";
+            enemyName.innerHTML = "ADOLF HITLER";
             document.getElementById("game").style.transform = "scale(1)";
             document.getElementById("playerImage").src = char;
             document.getElementById("enemyImage").src = enemy;
             document.body.style = 'background-image: url(https://github.com/Somat-1/finnNavnSenere/blob/main/Arena%204.gif?raw=true);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
         }
         function charHitler(){
-            char="https://github.com/Somat-1/finnNavnSenere/blob/7de898d1f5bd23316d497b82abfc2ce705e14cbc/Hitler-gif-drawing.gif?raw=true";
+            char="https://github.com/Somat-1/finnNavnSenere/blob/main/Hitler.gif?raw=true";
             stats = hitlerStats;
+            enemy='https://github.com/Somat-1/finnNavnSenere/blob/main/donald.png?raw=true';
           console.log(char);
+          damageMultiplier = 1.5;
+          hitMultiplier = 1.4;
           menu.remove();
           playerName.innerHTML = "ADOLF HITLER";
+          enemyName.innerHTML = "DONALD TRUMP";
           document.getElementById("game").style.transform = "scale(1)";
           document.getElementById("playerImage").src = char;
+          document.getElementById("enemyImage").src = enemy;
             document.body.style = 'background-image: url(https://github.com/Somat-1/finnNavnSenere/blob/main/Arena%204.gif?raw=true);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
         }
         function charTrump(){
             char="https://github.com/Somat-1/finnNavnSenere/blob/main/donald.png?raw=true";
             stats = trumpStats;
+            enemy="https://github.com/Somat-1/finnNavnSenere/blob/main/ernamad.gif?raw=true";
           console.log("Gangnam style");
+          damageMultiplier = 1;
+          hitMultiplier = 1;
           menu.remove();
           playerName.innerHTML = "DONALD TRUMP";
+          enemyName.innerHTML = "ERNA SOLBERG";
           document.getElementById("game").style.transform = "scale(1)";
           document.getElementById("playerImage").src = char;
+          document.getElementById("enemyImage").src = enemy;
             document.body.style = 'background-image: url(https://github.com/Somat-1/finnNavnSenere/blob/main/Arena%204.gif?raw=true);position: absolute;background-repeat: no-repeat;background-size: cover;height: 100vh;width: 100vw;'
         }
       </script>
@@ -548,9 +573,14 @@
     document.body.style = ' align-items: center;display: flex;font-family: "VT323", monospace;flex-wrap: wrap;justify-content: center;height: 100vh;margin: 0;background-color: #333333;"'
     var attackAnimation = document.getElementById('playerAttackImage');
     var animationDelay = Math.floor(Math.random() * 1000);
+    var deathInterval = 1000;
+
     var isAttacking;
-    var damageMultiplier = 1;
-    var battlesWon = 0;
+    var damageMultiplier;
+    var hitMultiplier;
+    var enemyDamageMultiplier;
+    var enemyHitMultiplier;
+
     function main(){
         isAttacking = true;
     }
@@ -581,7 +611,7 @@
     },{
         cardNumber: 003,
         cardName: 'ONE PUNCH',
-        cardCost: 70,
+        cardCost: 50,
         cardDamage: 50,
         cardText: "A fierce attack"
 
@@ -590,13 +620,14 @@
         cardName: 'FART ATTACK',
         cardCost: 25,
         cardDamage: 30,
-        cardText: "I'm out of words for this one"
+        cardText: "I'm out of words for this one",
+        cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/promp.png?raw=true"
     },{
         cardNumber: 005,
         cardName: 'SUPER SONIC SCREAM',
         cardCost: 20,
         cardDamage: 25,
-        cardTame: "Use that lung capacity"
+        cardText: "Use that lung capacity"
     },{
         cardNumber: 006,
         cardName: 'HYPER BEAM',
@@ -627,7 +658,7 @@
         cardCost: 30,
         cardDamage: 40,
         cardText: "History repeats itself huh?",
-        cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/nukeAttack.gif?raw=true"
+        cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/Nuke.gif?raw=true"
     },{
         cardNumber: 011,
         cardName: 'CAPITAL STORMING',
@@ -673,6 +704,8 @@
             //TODO fikse game over skjermen
             playerHealthBar.style.width = 0+'%';
             document.getElementById('playerHP').innerHTML = 0;
+            document.getElementById('playerImage').src="https://im6.ezgif.com/tmp/ezgif-6-e12d3d3b9cc0.gif";
+            setTimeout(lose,deathInterval);
         }else{
             playerHealthBar.style.width = playerHP+'%';
             var health = playerHealthBar.style.width;
@@ -688,7 +721,7 @@
 
     function enemyHit(damage, cost){
         debugger;
-        var damage = damage*damageMultiplier;
+        var damage = damage*hitMultiplier;
         enemyHP = enemyHP-damage;
         playerStamina = playerStamina-cost;
         playerStaminaBar.style.width = playerStamina+'%';
@@ -697,17 +730,18 @@
     }
     else{
         if(playerStamina>0){
-
             if(enemyHP<=0){
             //TODO fikse vinn skjermen
             enemyHealthBar.style.width = 0+'%';
             document.getElementById('enemyHP').innerHTML = 0;
+            document.getElementById('enemyImage').src="https://im6.ezgif.com/tmp/ezgif-6-e12d3d3b9cc0.gif";
+            setTimeout(win,deathInterval);
             }else{
                 enemyHealthBar.style.width = enemyHP+'%';
                 var health = enemyHealthBar.style.width;
                 document.getElementById('enemyHP').innerHTML = health;
 
-                var HitDamage = Math.floor(Math.random() * 40);
+                var HitDamage =Math.floor(Math.floor(Math.random() * 40)*damageMultiplier);
                 hit(HitDamage);
                 isAttacking=false;
             }
@@ -716,7 +750,6 @@
             setTimeout(gameLogFade, 2000);
         }
     }
-        
     }
     function gameLogFade(){
         document.getElementById('gameLog').innerHTML = '';
@@ -727,9 +760,9 @@
 
         var card =
         '<div class="card" onclick="playCard(this,'+randomCardNumber+
-        ')" ><div class="cardName">'+playingCards[randomCardNumber].cardName+
-        '</div><div id="cardCost">Cost: '+playingCards[randomCardNumber].cardCost+
-        '</div><div id="cardDamage">Damage: '+playingCards[randomCardNumber].cardDamage+
+        ')" ><div class="cardPadding"><div class="cardName">'+playingCards[randomCardNumber].cardName+
+        '</div><div class="cardPadding"><div id="cardCost">Cost: '+playingCards[randomCardNumber].cardCost+
+        '</div><div class="cardPadding"><div id="cardDamage">Damage: '+playingCards[randomCardNumber].cardDamage+
         '</div></div>';
         return card;
        
@@ -750,7 +783,7 @@
         var enemyHitDamage = playingCards[index].cardDamage;
         var cardCost = playingCards[index].cardCost;
         attackAnimation.src = playingCards[index].cardAttack;
-        attackAnimation.style = 'position: absolute;right: 0;top:-10vh;height: 200px;animation: moveAttack 1s infinite linear;'
+        attackAnimation.style = 'position: absolute;right: 0;top:-10vh;height: 300px;animation: moveAttack 1s infinite linear;'
         enemyHit(enemyHitDamage, cardCost);
        setTimeout(removeAttack, 1000);
         el.remove();
@@ -769,10 +802,15 @@
 
     function wobble(){
         var animationDelay = 1000;
-        document.getElementById('playerImage').style.animation =animationDelay+'ms wobble infinite';
-        }
+        document.getElementById('playerImage').style.animation =animationDelay+'ms wobble infinite';}
         wobble();
-        
+        function win(){
+        window.location.href = 'win.html';
+    }
+
+    function lose(){
+        window.location.href = 'gameover.html';
+    }
 
     </script>
 
