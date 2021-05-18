@@ -348,6 +348,7 @@
             right: 0;
             height: 200px;
         }
+
         @keyframes moveAttack{
             from{
                 transform:translateX(0%);
@@ -753,7 +754,7 @@
         playerStamina = playerStamina-cost;
         playerStaminaBar.style.width = playerStamina+'%';
     if(isAttacking=false){
-        return
+        return;
     }
     else{
         if(playerStamina>0){
@@ -807,6 +808,7 @@
         var cardBG = playingCards[index].cardBG;
         if(playingCards[index].cardRecharge!=undefined){
             document.getElementById('playerImage').src=playingCards[index].cardRecharge;
+            recharge.play();
             setTimeout(removeRecharge,2500);
             enemyHit(enemyHitDamage, cardCost);
             el.remove();
@@ -891,7 +893,11 @@
     });
     var robDeath= new Howl({
     src:["robDeath.mp3"],
-    volume: 0.5,
+    volume: 0.2,
+    });
+    var recharge= new Howl({
+    src:["shield.mp3"],
+    volume: 0.3,
     });
     </script>
 </html>
