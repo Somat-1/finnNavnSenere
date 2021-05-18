@@ -11,6 +11,16 @@ h1{
     font-size: 80px;
     font-family: 'VT323', monospace;
 }
+p{
+    position: flex;
+    text-align: center;
+    color:white;
+    font-size: 30px;
+    font-family: 'VT323', monospace;
+    background: #333333;
+    margin-right: 25vh;
+    margin-left: 25vh;
+}
 
 .play{
     background-color: #333333;
