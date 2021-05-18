@@ -655,7 +655,7 @@
         cardDamage: 0,
         cardText: "Use me to refill that sweet mana of yours",
         cardRecharge:"https://github.com/Somat-1/finnNavnSenere/blob/main/betaCharge.gif?raw=true",
-        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/betaCharge.png?raw=true"
     },{
         cardNumber: 8,
         cardName: 'SUPER STAMINA CHARGE',
@@ -663,7 +663,7 @@
         cardDamage: 0,
         cardText: "Use me to refill that sweet mana of yours",
         cardRecharge: "https://github.com/Somat-1/finnNavnSenere/blob/main/betaCharge.gif?raw=true",
-        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/superStamina.png?raw=true"
     },{
         cardNumber: 9,
         cardName: 'CAPITAL STORMING',
@@ -679,7 +679,7 @@
         cardDamage: 40,
         cardText: "History repeats itself huh?",
         cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/Nuke.gif?raw=true",
-        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/nuke.png?raw=true"
     },{
         cardNumber: 011,
         cardName: 'CAPITAL STORMING',
@@ -730,6 +730,7 @@
             //TODO fikse game over skjermen
             playerHealthBar.style.width = 0+'%';
             document.getElementById('playerHP').innerHTML = 0;
+            waaDeath.play();
             document.getElementById('playerImage').src="https://github.com/Somat-1/finnNavnSenere/blob/main/death.gif?raw=true";
             setTimeout(lose,deathInterval);
         }else{
@@ -761,6 +762,7 @@
             enemyHealthBar.style.width = 0+'%';
             document.getElementById('enemyHP').innerHTML = 0;
             document.getElementById('enemyImage').src="https://github.com/Somat-1/finnNavnSenere/blob/main/death.gif?raw=true";
+            robDeath.play();
             setTimeout(win,deathInterval);
             }else{
                 enemyHealthBar.style.width = enemyHP+'%';
@@ -823,6 +825,7 @@
         attackAnimation.src = playingCards[index].cardAttack;
         attackAnimation.style = 'position: absolute;left: 0;top:-10vh;height: 400px;animation: moveAttack 1s linear;'
         enemyHit(enemyHitDamage, cardCost);
+        cardFly.play();
         setTimeout(enemyHitEffect, 0);
        setTimeout(removeAttack, 1000);
        el.remove();
@@ -874,8 +877,21 @@
     volume: 0.1
     });
     var battleSong= new Howl({
-    src:["Intro.mp3"],
-    volume: 0.1
+    src:["jojoTheme.mp3"],
+    volume: 0.08,
+    loop: true
+    });
+    var cardFly= new Howl({
+    src:["swoosh.mp3"],
+    volume: 0.5,
+    });
+    var waaDeath= new Howl({
+    src:["waa.mp3"],
+    volume: 0.1,
+    });
+    var robDeath= new Howl({
+    src:["robDeath.mp3"],
+    volume: 0.5,
     });
     </script>
 </html>
