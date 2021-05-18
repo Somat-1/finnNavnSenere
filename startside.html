@@ -6,14 +6,25 @@
     <link rel="stylesheet" href="startside.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<script src="howler.js"></script>
+
 </head>
 <body>
 <h1>POLITICALLY CORRECT</h1>
+<p>IT IS RECOMMENDED TO PLAY IN FULLSCREEN</p>
 <div class="button">
-<a href="test.html" class="play">Play</a> <br>
+<a href="politiskkorrekt.html" class="play">Play</a> <br>
 <div class="howknapp">
 <a href="howtoplay.html" class="play">How to play</a>
 </div>
 </div>
+<script>
+var soundButton = document.getElementById("mute");
+var ngTest= new Howl({
+    src:["buttonPress.mp3"],
+    loop: true,
+    volume: 0.1
+    });
+</script>
 </body>
 </html>
