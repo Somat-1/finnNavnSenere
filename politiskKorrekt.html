@@ -199,7 +199,7 @@
     
         .card:hover{
             background-color: tomato;
-            -webkit-transform: translateY(-65px);
+            transform: translateY(-65px);
         }
 
         #staminaBarContainer{
@@ -372,6 +372,14 @@
             }
             100%{
                 transform: translateX(0%);
+            }
+        }
+        @keyframes retreat{
+            from{
+                transform: translateX(0%);
+            }
+            to{
+                transform: translateX(-50%);
             }
         }
 
@@ -588,7 +596,7 @@
         cardDamage: 10,
         cardText: "The most basic and common attack you'll find, the thing it all starts with",
         cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/punchAttack.gif?raw=true",
-        cardBG: "punchAttack.png"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/PunchAttack.png?raw=true"
     },{
         cardNumber: 001,
         cardName: 'FORGIVING HAND',
@@ -596,7 +604,7 @@
         cardDamage:-20,
         cardText: "Feeling cocky eey? Use this to give your enemy a second chance",
         cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/ForgivingHand.gif?raw=true",
-        cardBG:"forgivingHand800.png"
+        cardBG:"https://github.com/Somat-1/finnNavnSenere/blob/main/forgivingHand800.png?raw=true"
 
         
     },{
@@ -606,7 +614,7 @@
         cardDamage: 15,
         cardText: "Classic one isn't it?",
         cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/riot.gif?raw=true",
-        cardBG: "startingARiot.png"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/StartingARiot.png?raw=true"
 
     },{
         cardNumber: 003,
@@ -615,7 +623,7 @@
         cardDamage: 50,
         cardText: "A fierce attack",
         cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/onePunch.gif?raw=true",
-        cardBG: "OnePunch.png"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/OnePunch.png?raw=true"
 
     },{
         cardNumber: 004,
@@ -624,7 +632,7 @@
         cardDamage: 30,
         cardText: "I'm out of words for this one",
         cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/promp.png?raw=true",
-        cardBG: "forgivingHand800.png"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
     },{
         cardNumber: 005,
         cardName: 'SUPER SONIC SCREAM',
@@ -632,28 +640,30 @@
         cardDamage: 25,
         cardText: "Use that lung capacity",
         cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/sonic.gif?raw=true",
-        cardBG: "forgivingHand800.png"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
     },{
         cardNumber: 006,
         cardName: 'HYPER BEAM',
         cardCost: 30,
         cardDamage: 25,
-        cardAttack:"hyperBeam.gif",
-        cardBG: "forgivingHand800.png"
+        cardAttack:"https://github.com/Somat-1/finnNavnSenere/blob/main/hyperBeam.gif?raw=true",
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
     },{
         cardNumber: 007,
         cardName: 'BETA STAMINA CHARGE',
         cardCost: -20,
         cardDamage: 0,
         cardText: "Use me to refill that sweet mana of yours",
-        cardBG: "forgivingHand800.png"
+        cardRecharge:"https://github.com/Somat-1/finnNavnSenere/blob/main/betaCharge.gif?raw=true",
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
     },{
         cardNumber: 8,
         cardName: 'SUPER STAMINA CHARGE',
         cardCost: -30,
         cardDamage: 0,
         cardText: "Use me to refill that sweet mana of yours",
-        cardBG: "forgivingHand800.png"
+        cardRecharge: "https://github.com/Somat-1/finnNavnSenere/blob/main/betaCharge.gif?raw=true",
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
     },{
         cardNumber: 9,
         cardName: 'CAPITAL STORMING',
@@ -661,7 +671,7 @@
         cardDamage: 30,
         cardText: "History repeats itself huh?",
         cardAttack: 'https://github.com/Somat-1/finnNavnSenere/blob/main/capital%20storming.gif?raw=true',
-        cardBG: "forgivingHand800.png"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
     },{
         cardNumber: 010,
         cardName: 'NUCLEAR STRIKE',
@@ -669,21 +679,23 @@
         cardDamage: 40,
         cardText: "History repeats itself huh?",
         cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/Nuke.gif?raw=true",
-        cardBG: "forgivingHand800.png"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
     },{
         cardNumber: 011,
         cardName: 'CAPITAL STORMING',
         cardCost: 10,
         cardDamage: 30,
         cardText: "History repeats itself huh?",
-        cardBG: "forgivingHand800.png"
+        cardAttack: 'https://github.com/Somat-1/finnNavnSenere/blob/main/capital%20storming.gif?raw=true',
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
     },{
         cardNumber: 012,
         cardName: 'TACTICAL RETRAT',
         cardCost: -50,
         cardDamage: -10,
         cardText: "Heals your enemy, but refills your stamina",
-        cardBG: "forgivingHand800.png"
+        cardRetreat: 1,
+        cardBG: "death.gif"
     }];
 
 
@@ -791,7 +803,23 @@
         var enemyHitDamage = playingCards[index].cardDamage;
         var cardCost = playingCards[index].cardCost;
         var cardBG = playingCards[index].cardBG;
-        if(playerStamina>=playingCards[index].cardCost){
+        if(playingCards[index].cardRecharge!=undefined){
+            document.getElementById('playerImage').src=playingCards[index].cardRecharge;
+            setTimeout(removeRecharge,2500);
+            enemyHit(enemyHitDamage, cardCost);
+            el.remove();
+            document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+            document.getElementsByClassName('card').style.background = 'url("'+cardBG+'");'
+        }
+       /* else if(playingCards[index].cardRetreat===1){
+            document.getElementById('playerImage').style = 'height: 400px;margin: auto auto;position: absolute;top: -15vh;left: -5vw; animation: retreat 2s linear';
+            enemyHit(enemyHitDamage, cardCost);
+            el.remove();
+            document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+            document.getElementsByClassName('card').style.background = 'url("'+cardBG+'");'
+            setTimeout(removeRetreat,2000);
+        }*/
+        else if(playerStamina>=playingCards[index].cardCost){
         attackAnimation.src = playingCards[index].cardAttack;
         attackAnimation.style = 'position: absolute;left: 0;top:-10vh;height: 400px;animation: moveAttack 1s linear;'
         enemyHit(enemyHitDamage, cardCost);
@@ -802,7 +830,7 @@
         document.getElementsByClassName('card').style.background = 'url("'+cardBG+'");'
         }
             else{
-            document.getElementById('gameLog').innerHTML = 'YOU NEED TO REFILL YOU STAMINA';
+            document.getElementById('gameLog').innerHTML = 'YOU NEED TO REFILL YOUR STAMINA';
             setTimeout(gameLogFade, 2000);
         }
     }
@@ -810,7 +838,9 @@
         document.getElementById("playerAttackImage").src = '';
         attackAnimation.style = 'position: absolute;right: 0;height: 200px;'
     }
-
+    function removeRecharge(){
+        document.getElementById("playerImage").src = char;
+    }
 
     //test();
     printCards();
