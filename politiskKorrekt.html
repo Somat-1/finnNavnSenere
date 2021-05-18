@@ -8,10 +8,12 @@
     <script src="preload.js"></script>
     <script src="howler.js"></script>
     <style>
+
         /* header stilen */
         header{
             background-color: transparent;
             padding: 5vh;
+            font-family: arcadeFont;
         }
         .card{
             border: none !important;
@@ -108,7 +110,7 @@
         }
 
         #playerName, #enemyName{
-            font-family: "ＭＳ Ｐゴシック";
+            font-family: arcadeFont;
             color: white;
             position: relative;
             margin: 5px;
@@ -325,7 +327,7 @@
             left: -5vw;
         }
         #gameLog{
-            font-family: "ＭＳ Ｐゴシック";
+            font-family: arcadeFont;
             color: white;
             margin: auto;
             width: 50%;
@@ -383,6 +385,22 @@
                 transform: translateX(-50%);
             }
         }
+
+        #skipTurnBtn{
+
+            margin-left: 50%;
+            font-family: arcadeFont;
+        }
+
+        @font-face {
+            font-family: arcadeFont;
+            src: url(ARCADECLASSIC.TTF);
+        }
+
+        body{
+            font-family: arcadeFont;
+        }
+
 
     </style>
 
@@ -504,7 +522,8 @@
       </script>
       <script src="enemy.js"></script>
 <div id="game">
-   
+    <button id="skipTurnBtn" onclick="skipTurn()"> SKIP  TURN</button>
+
 
     <header class="flex-container">
 
@@ -574,7 +593,7 @@
 <script src="enemy.js"></script>
 <script>
     document.getElementById("game").style.transform = "scale(0)";
-    document.body.style = ' align-items: center;display: flex;font-family: "VT323", monospace;flex-wrap: wrap;justify-content: center;height: 100vh;margin: 0;background-color: #333333;"'
+    document.body.style = ' align-items: center;display: flex;font-family: arcadeFont, monospace;flex-wrap: wrap;justify-content: center;height: 100vh;margin: 0;background-color: #333333;"'
     var attackAnimation = document.getElementById('playerAttackImage');
     var animationDelay = Math.floor(Math.random() * 1000);
     var deathInterval = 1000;
@@ -703,13 +722,6 @@
 
 
    
-
-
-    var enemyBosses = [];
-    var Putin = {
-        name: 'PewTinPie',
-
-    }
     
     //test funksjon til å teste om health bars funker
     function test(){
@@ -739,6 +751,8 @@
             var health = playerHealthBar.style.width;
             document.getElementById('playerHP').innerHTML = health;
         }
+        checkEnemyHealth();
+        checkPlayerStamina();
     }
 
     
@@ -776,6 +790,8 @@
             }
         }
     }
+        checkEnemyHealth();
+        checkPlayerStamina();
     }
     function gameLogFade(){
         document.getElementById('gameLog').innerHTML = '';
@@ -806,6 +822,7 @@
         var enemyHitDamage = playingCards[index].cardDamage;
         var cardCost = playingCards[index].cardCost;
         var cardBG = playingCards[index].cardBG;
+
         if(playingCards[index].cardRecharge!=undefined){
             document.getElementById('playerImage').src=playingCards[index].cardRecharge;
             recharge.play();
@@ -813,7 +830,9 @@
             enemyHit(enemyHitDamage, cardCost);
             el.remove();
             document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
-            document.getElementsByClassName('card').style.background = 'url("'+cardBG+'");'
+            document.getElementsByClassName('card').style.background = 'url("'+cardBG+'");';
+            checkEnemyHealth();
+            checkPlayerStamina();
         }
        /* else if(playingCards[index].cardRetreat===1){
             document.getElementById('playerImage').style = 'height: 400px;margin: auto auto;position: absolute;top: -15vh;left: -5vw; animation: retreat 2s linear';
@@ -832,11 +851,15 @@
        setTimeout(removeAttack, 1000);
        el.remove();
         document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
-        document.getElementsByClassName('card').style.background = 'url("'+cardBG+'");'
+        document.getElementsByClassName('card').style.background = 'url("'+cardBG+'");';
+        checkEnemyHealth();
+        checkPlayerStamina();
         }
             else{
             document.getElementById('gameLog').innerHTML = 'YOU NEED TO REFILL YOUR STAMINA';
             setTimeout(gameLogFade, 2000);
+            checkEnemyHealth();
+            checkPlayerStamina();
         }
     }
     function removeAttack(){
@@ -870,6 +893,34 @@
     }
     function enemyRecov(){
         document.getElementById('enemyImage').style.filter = "invert(0%)";
+    }
+
+    function skipTurn(){
+        if(playerStamina<100){
+            playerStamina = playerStamina+20;
+            playerStaminaBar.style.width = playerStamina+'%';
+            hit(15);
+        }else if(playerStamina>80)
+            playerStamina = 100;
+            playerStaminaBar.style.width = playerStamina+'%';
+            hit(15);
+
+    }
+
+    //hotfix
+    function checkEnemyHealth(){
+        if(enemyHP>100){
+            enemyHP=100;
+            enemyHealthBar.style.width = enemyHP+'%';
+            document.getElementById('enemyHP').innerHTML = enemyHP;
+        }
+    }
+
+    function checkPlayerStamina(){
+        if(playerStamina>100){
+            playerStamina=100;
+            playerStaminaBar.style.width = playerStamina+'%';
+        }
     }
 
     </script>
