@@ -695,9 +695,206 @@
         cardDamage: -10,
         cardText: "Heals your enemy, but refills your stamina",
         cardRecharge: "https://github.com/Somat-1/finnNavnSenere/blob/main/retreat.gif?raw=true",
-        cardBG: "death.gif"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/tactical_retreat.png?raw=true"
     }];
 
+
+
+
+   
+
+
+    var enemyBosses = [];
+    var Putin = {
+        name: 'PewTinPie',
+
+    }
+    
+    //test funksjon til å teste om health bars funker
+    function test(){
+        debugger;
+        var damage = prompt('damage');
+        hit(damage);
+        enemyHit(damage);
+    }
+
+    var playerHP = 100;
+    var enemyHP = 100;
+    
+
+    var playerHealthBar = document.getElementById('player-health-bar');
+
+    function hit(damage){
+        playerHP = playerHP-damage;
+        if(playerHP<=0){
+            //TODO fikse game over skjermen
+            playerHealthBar.style.width = 0+'%';
+            document.getElementById('playerHP').innerHTML = 0;
+            waaDeath.play();
+            document.getElementById('playerImage').src="https://github.com/Somat-1/finnNavnSenere/blob/main/death.gif?raw=true";
+            setTimeout(lose,deathInterval);
+        }else{
+            playerHealthBar.style.width = playerHP+'%';
+            var health = playerHealthBar.style.width;
+            document.getElementById('playerHP').innerHTML = health;
+        }
+    }
+
+    
+
+    var enemyHealthBar = document.getElementById('enemy-health-bar');
+    var playerStaminaBar = document.getElementById('staminaBar');
+    var playerStamina = 100;
+
+    function enemyHit(damage, cost){
+        debugger;
+        var damage = damage*hitMultiplier;
+        enemyHP = enemyHP-damage;
+        playerStamina = playerStamina-cost;
+        playerStaminaBar.style.width = playerStamina+'%';
+    if(isAttacking=false){
+        return
+    }
+    else{
+        if(playerStamina>0){
+            if(enemyHP<=0){
+            //
+            enemyHealthBar.style.width = 0+'%';
+            document.getElementById('enemyHP').innerHTML = 0;
+            document.getElementById('enemyImage').src="https://github.com/Somat-1/finnNavnSenere/blob/main/death.gif?raw=true";
+            robDeath.play();
+            setTimeout(win,deathInterval);
+            }else{
+                enemyHealthBar.style.width = enemyHP+'%';
+                var health = enemyHealthBar.style.width;
+                document.getElementById('enemyHP').innerHTML = health;
+
+                var HitDamage =Math.floor(Math.floor(Math.random() * 40)*damageMultiplier);
+                hit(HitDamage);
+                isAttacking=false;
+            }
+        }
+    }
+    }
+    function gameLogFade(){
+        document.getElementById('gameLog').innerHTML = '';
+    }
+
+    //funksjonen til å printe ett kort
+    function printCard(randomCardNumber){
+
+        var card =
+        '<div class="card" style="background:url('+playingCards[randomCardNumber].cardBG+');background-repeat:no-repeat;background-size:cover;" onclick="playCard(this,'+randomCardNumber+
+        ')" ></div>';
+        return card;
+       
+    }
+    //funksjonen som printer alle korta
+    function printCards(){
+
+        for(var i= 0 ; i<5 ; i++){
+           var randomCardNumber = Math.floor(Math.random() * 11);
+           document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+        }
+    }
+
+
+    //funksjonen som utløses ved at spilleren velger og trykker på et av kortene
+    function playCard(el,index){
+        var randomCardNumber = Math.floor(Math.random() * 13);
+        var enemyHitDamage = playingCards[index].cardDamage;
+        var cardCost = playingCards[index].cardCost;
+        var cardBG = playingCards[index].cardBG;
+        if(playingCards[index].cardRecharge!=undefined){
+            document.getElementById('playerImage').src=playingCards[index].cardRecharge;
+            setTimeout(removeRecharge,2500);
+            enemyHit(enemyHitDamage, cardCost);
+            el.remove();
+            document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+            document.getElementsByClassName('card').style.background = 'url("'+cardBG+'");'
+        }
+       /* else if(playingCards[index].cardRetreat===1){
+            document.getElementById('playerImage').style = 'height: 400px;margin: auto auto;position: absolute;top: -15vh;left: -5vw; animation: retreat 2s linear';
+            enemyHit(enemyHitDamage, cardCost);
+            el.remove();
+            document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+            document.getElementsByClassName('card').style.background = 'url("'+cardBG+'");'
+            setTimeout(removeRetreat,2000);
+        }*/
+        else if(playerStamina>=playingCards[index].cardCost){
+        attackAnimation.src = playingCards[index].cardAttack;
+        attackAnimation.style = 'position: absolute;left: 0;top:-10vh;height: 400px;animation: moveAttack 1s linear;'
+        enemyHit(enemyHitDamage, cardCost);
+        cardFly.play();
+        setTimeout(enemyHitEffect, 0);
+       setTimeout(removeAttack, 1000);
+       el.remove();
+        document.getElementById('cardsContainer').innerHTML += printCard(randomCardNumber);
+        document.getElementsByClassName('card').style.background = 'url("'+cardBG+'");'
+        }
+            else{
+            document.getElementById('gameLog').innerHTML = 'YOU NEED TO REFILL YOUR STAMINA';
+            setTimeout(gameLogFade, 2000);
+        }
+    }
+    function removeAttack(){
+        document.getElementById("playerAttackImage").src = '';
+        attackAnimation.style = 'position: absolute;right: 0;height: 200px;'
+    }
+    function removeRecharge(){
+        document.getElementById("playerImage").src = char;
+    }
+
+    //test();
+    printCards();
+    document.getElementById("playerImage").src = char;
+    console.log(char);
+
+    function wobble(){
+        var animationDelay = 1000;
+        document.getElementById('playerImage').style.animation =animationDelay+'ms wobble infinite';}
+        wobble();
+        function win(){
+        window.location.href = 'win.html';
+    }
+
+    function lose(){
+        window.location.href = 'gameover.html';
+    }
+
+    function enemyHitEffect(){
+        document.getElementById('enemyImage').style.filter = "invert(100%)";
+        setTimeout(enemyRecov,100)
+    }
+    function enemyRecov(){
+        document.getElementById('enemyImage').style.filter = "invert(0%)";
+    }
+
+    </script>
+    <script>
+    var buttonClick= new Howl({
+    src:["buttonPress.mp3"],
+    volume: 0.1
+    });
+    var battleSong= new Howl({
+    src:["jojoTheme.mp3"],
+    volume: 0.08,
+    loop: true
+    });
+    var cardFly= new Howl({
+    src:["swoosh.mp3"],
+    volume: 0.5,
+    });
+    var waaDeath= new Howl({
+    src:["waa.mp3"],
+    volume: 0.1,
+    });
+    var robDeath= new Howl({
+    src:["robDeath.mp3"],
+    volume: 0.5,
+    });
+    </script>
+</html>
 
 
 
