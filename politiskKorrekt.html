@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FINN NAVN SENERE</title>
-
-
+    <script src="preload.js"></script>
+    <script src="howler.js"></script>
     <style>
         /* header stilen */
         header{
@@ -389,7 +389,7 @@
 </head>
 <body>
     <div id="menu">
-        <div class="person" id="person1"  onclick="charErna()">
+        <div class="person" id="person1"  onclick="charErna();buttonClick.play();battleSong.play()">
             
             <div class="container">
               <div class="container-inner">
@@ -407,7 +407,7 @@
             <div class="name">Erna Solberg</div>
             <div class="charDesc">+Health<br>-Damage</div>
           </div>
-          <div class="person" id="person2" onclick="charTrump()">
+          <div class="person" id="person2" onclick="charTrump();buttonClick.play();battleSong.play()">
             <div class="container">
               <div class="container-inner">
                 <img
@@ -424,7 +424,7 @@
             <div class="name">Donald Trump</div>
             <div class="charDesc">Normal Health<br>and Damage</div>
           </div>
-          <div class="person" id="person3" onclick="charHitler()">
+          <div class="person" id="person3" onclick="charHitler();buttonClick.play();battleSong.play()">
             <div class="container">
               <div class="container-inner">
                 <img
@@ -631,7 +631,7 @@
         cardCost: 25,
         cardDamage: 30,
         cardText: "I'm out of words for this one",
-        cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/promp.png?raw=true",
+        cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/fart.gif?raw=true",
         cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
     },{
         cardNumber: 005,
@@ -640,14 +640,14 @@
         cardDamage: 25,
         cardText: "Use that lung capacity",
         cardAttack: "https://github.com/Somat-1/finnNavnSenere/blob/main/sonic.gif?raw=true",
-        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/superSonicScream.png?raw=true"
     },{
         cardNumber: 006,
         cardName: 'HYPER BEAM',
         cardCost: 30,
         cardDamage: 25,
         cardAttack:"https://github.com/Somat-1/finnNavnSenere/blob/main/hyperBeam.gif?raw=true",
-        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/fartAttack.png?raw=true"
+        cardBG: "https://github.com/Somat-1/finnNavnSenere/blob/main/hyperBeam.png?raw=true"
     },{
         cardNumber: 007,
         cardName: 'BETA STAMINA CHARGE',
@@ -694,7 +694,7 @@
         cardCost: -50,
         cardDamage: -10,
         cardText: "Heals your enemy, but refills your stamina",
-        cardRetreat: 1,
+        cardRecharge: "https://github.com/Somat-1/finnNavnSenere/blob/main/retreat.gif?raw=true",
         cardBG: "death.gif"
     }];
 
@@ -868,5 +868,14 @@
     }
 
     </script>
-
+    <script>
+    var buttonClick= new Howl({
+    src:["buttonPress.mp3"],
+    volume: 0.1
+    });
+    var battleSong= new Howl({
+    src:["Intro.mp3"],
+    volume: 0.1
+    });
+    </script>
 </html>
